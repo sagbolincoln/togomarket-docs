@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+  <defs>
+    <filter id="s" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.07"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="700" rx="16" fill="#f8fafc"/>
+  <text x="450" y="36" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">Flux de Commande - Processus Complet</text>
+
+  <!-- Actors -->
+  <rect x="80" y="52" width="120" height="32" rx="8" fill="#3b82f6"/>
+  <text x="140" y="73" text-anchor="middle" font-size="12" font-weight="700" fill="white">Acheteur</text>
+  <rect x="300" y="52" width="120" height="32" rx="8" fill="#64748b"/>
+  <text x="360" y="73" text-anchor="middle" font-size="12" font-weight="700" fill="white">Panier</text>
+  <rect x="500" y="52" width="120" height="32" rx="8" fill="#10b981"/>
+  <text x="560" y="73" text-anchor="middle" font-size="12" font-weight="700" fill="white">API Backend</text>
+  <rect x="690" y="52" width="120" height="32" rx="8" fill="#f59e0b"/>
+  <text x="750" y="73" text-anchor="middle" font-size="12" font-weight="700" fill="white">Stripe</text>
+
+  <!-- Lifelines -->
+  <line x1="140" y1="84" x2="140" y2="680" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="360" y1="84" x2="360" y2="680" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="560" y1="84" x2="560" y2="680" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="750" y1="84" x2="750" y2="680" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Phase 1 -->
+  <rect x="20" y="98" width="860" height="200" rx="10" fill="#eff6ff" opacity="0.5"/>
+  <rect x="25" y="102" width="130" height="22" rx="6" fill="#1d4ed8"/>
+  <text x="90" y="117" text-anchor="middle" font-size="10" font-weight="700" fill="white">PHASE 1 : Achat</text>
+
+  <!-- Step 1: Add to cart -->
+  <line x1="140" y1="140" x2="360" y2="140" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="360,140 350,134 350,146" fill="#3b82f6"/>
+  <rect x="180" y="125" width="140" height="22" rx="4" fill="white" stroke="#e2e8f0" filter="url(#s)"/>
+  <text x="250" y="140" text-anchor="middle" font-size="10" fill="#334155">Ajoute produits</text>
+
+  <!-- Step 2: Create session -->
+  <line x1="140" y1="170" x2="560" y2="170" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="560,170 550,164 550,176" fill="#3b82f6"/>
+  <rect x="260" y="155" width="190" height="22" rx="4" fill="white" stroke="#e2e8f0" filter="url(#s)"/>
+  <text x="355" y="170" text-anchor="middle" font-size="10" fill="#334155">POST /checkout/create-session</text>
+
+  <!-- Note: Split -->
+  <rect x="480" y="185" width="160" height="36" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="560" y="200" text-anchor="middle" font-size="9" font-weight="600" fill="#b45309">Split panier par vendeur</text>
+  <text x="560" y="214" text-anchor="middle" font-size="9" fill="#b45309">N commandes (pending)</text>
+
+  <!-- Step 3: Stripe session -->
+  <line x1="560" y1="230" x2="750" y2="230" stroke="#10b981" stroke-width="2"/>
+  <polygon points="750,230 740,224 740,236" fill="#10b981"/>
+  <rect x="600" y="215" width="120" height="22" rx="4" fill="white" stroke="#e2e8f0" filter="url(#s)"/>
+  <text x="660" y="230" text-anchor="middle" font-size="10" fill="#334155">Checkout Session</text>
+
+  <!-- Step 4: Redirect -->
+  <line x1="750" y1="260" x2="140" y2="260" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="140,260 150,254 150,266" fill="#f59e0b"/>
+  <rect x="350" y="245" width="150" height="22" rx="4" fill="#fef3c7" stroke="#f59e0b" filter="url(#s)"/>
+  <text x="425" y="260" text-anchor="middle" font-size="10" font-weight="600" fill="#b45309">Page de paiement</text>
+
+  <!-- Phase 2 -->
+  <rect x="20" y="298" width="860" height="110" rx="10" fill="#f0fdf4" opacity="0.5"/>
+  <rect x="25" y="302" width="155" height="22" rx="6" fill="#059669"/>
+  <text x="102" y="317" text-anchor="middle" font-size="10" font-weight="700" fill="white">PHASE 2 : Paiement</text>
+
+  <!-- Step 5: Pay -->
+  <line x1="140" y1="340" x2="750" y2="340" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="750,340 740,334 740,346" fill="#3b82f6"/>
+  <rect x="380" y="325" width="80" height="22" rx="4" fill="#dbeafe" stroke="#3b82f6" filter="url(#s)"/>
+  <text x="420" y="340" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">Paye</text>
+
+  <!-- Step 6: Webhook -->
+  <line x1="750" y1="370" x2="560" y2="370" stroke="#f59e0b" stroke-width="2.5"/>
+  <polygon points="560,370 570,364 570,376" fill="#f59e0b"/>
+  <rect x="600" y="355" width="120" height="22" rx="4" fill="#fef3c7" stroke="#f59e0b" filter="url(#s)"/>
+  <text x="660" y="370" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">Webhook</text>
+
+  <!-- Note: All paid -->
+  <rect x="480" y="385" width="160" height="22" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="1"/>
+  <text x="560" y="400" text-anchor="middle" font-size="9" font-weight="600" fill="#047857">Commandes paid + Stock -</text>
+
+  <!-- Phase 3 -->
+  <rect x="20" y="420" width="860" height="100" rx="10" fill="#faf5ff" opacity="0.5"/>
+  <rect x="25" y="424" width="165" height="22" rx="6" fill="#7c3aed"/>
+  <text x="107" y="439" text-anchor="middle" font-size="10" font-weight="700" fill="white">PHASE 3 : Preparation</text>
+
+  <!-- Vendeur appears -->
+  <rect x="30" y="462" width="80" height="28" rx="8" fill="#10b981"/>
+  <text x="70" y="480" text-anchor="middle" font-size="10" font-weight="700" fill="white">Vendeur</text>
+
+  <line x1="110" y1="476" x2="560" y2="476" stroke="#10b981" stroke-width="2"/>
+  <polygon points="560,476 550,470 550,482" fill="#10b981"/>
+  <rect x="250" y="461" width="200" height="22" rx="4" fill="white" stroke="#e2e8f0" filter="url(#s)"/>
+  <text x="350" y="476" text-anchor="middle" font-size="10" fill="#334155">PATCH status: processing</text>
+
+  <!-- Phase 4 -->
+  <rect x="20" y="530" width="860" height="150" rx="10" fill="#fffbeb" opacity="0.5"/>
+  <rect x="25" y="534" width="155" height="22" rx="6" fill="#d97706"/>
+  <text x="102" y="549" text-anchor="middle" font-size="10" font-weight="700" fill="white">PHASE 4 : Livraison</text>
+
+  <!-- Shipped -->
+  <line x1="110" y1="570" x2="560" y2="570" stroke="#10b981" stroke-width="2"/>
+  <polygon points="560,570 550,564 550,576" fill="#10b981"/>
+  <rect x="250" y="555" width="200" height="22" rx="4" fill="white" stroke="#e2e8f0" filter="url(#s)"/>
+  <text x="350" y="570" text-anchor="middle" font-size="10" fill="#334155">PATCH status: shipped</text>
+
+  <!-- Code generated note -->
+  <rect x="575" y="558" width="140" height="24" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="645" y="574" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">Code: 472831</text>
+
+  <!-- Buyer sees code -->
+  <line x1="140" y1="604" x2="560" y2="604" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="560,604 550,598 550,610" fill="#3b82f6"/>
+  <rect x="250" y="589" width="200" height="22" rx="4" fill="white" stroke="#e2e8f0" filter="url(#s)"/>
+  <text x="350" y="604" text-anchor="middle" font-size="10" fill="#334155">GET /delivery-code</text>
+
+  <!-- Buyer to seller code -->
+  <line x1="140" y1="634" x2="70" y2="634" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="70,634 80,628 80,640" fill="#8b5cf6"/>
+  <rect x="50" y="619" width="130" height="22" rx="4" fill="#ede9fe" stroke="#8b5cf6" filter="url(#s)"/>
+  <text x="115" y="634" text-anchor="middle" font-size="10" font-weight="600" fill="#6d28d9">Code: 472831</text>
+
+  <!-- Confirm delivery -->
+  <line x1="110" y1="660" x2="560" y2="660" stroke="#10b981" stroke-width="2.5"/>
+  <polygon points="560,660 550,654 550,666" fill="#10b981"/>
+  <rect x="230" y="645" width="220" height="22" rx="4" fill="#d1fae5" stroke="#10b981" filter="url(#s)"/>
+  <text x="340" y="660" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">confirm-delivery(472831) = delivered</text>
+</svg>

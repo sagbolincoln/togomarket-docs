@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TogoMarket - Documentation</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-sidebar: #0f172a;
+      --bg-sidebar-hover: #1e293b;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --text-sidebar: #cbd5e1;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #06b6d4;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,.07), 0 2px 4px -2px rgba(0,0,0,.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.08), 0 4px 6px -4px rgba(0,0,0,.04);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ===================== SIDEBAR ===================== */
+    .sidebar {
+      width: 280px;
+      min-height: 100vh;
+      background: var(--bg-sidebar);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      overflow-y: auto;
+      transition: transform .3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-header {
+      padding: 28px 24px 20px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .sidebar-logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .sidebar-logo-text {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .sidebar-logo-sub {
+      color: var(--text-sidebar);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .sidebar-nav {
+      padding: 16px 12px;
+      flex: 1;
+    }
+
+    .sidebar-section {
+      margin-bottom: 8px;
+    }
+
+    .sidebar-section-title {
+      color: var(--text-sidebar);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 12px 12px 6px;
+      opacity: .6;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all .15s;
+    }
+
+    .sidebar-link:hover {
+      background: var(--bg-sidebar-hover);
+      color: #fff;
+    }
+
+    .sidebar-link.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .sidebar-link-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-footer {
+      padding: 16px 24px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--text-sidebar);
+      font-size: 12px;
+      opacity: .5;
+    }
+
+    /* ===================== MAIN ===================== */
+    .main {
+      margin-left: 280px;
+      flex: 1;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(248,250,252,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .topbar-badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-blue { background: #dbeafe; color: #1d4ed8; }
+    .badge-green { background: #d1fae5; color: #047857; }
+    .badge-amber { background: #fef3c7; color: #b45309; }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .content {
+      padding: 40px;
+      max-width: 960px;
+    }
+
+    /* ===================== PAGE SECTION ===================== */
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    /* ===================== HERO ===================== */
+    .hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+      border-radius: 16px;
+      padding: 48px;
+      margin-bottom: 32px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(59,130,246,.2), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      opacity: .8;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-value {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .hero-stat-label {
+      font-size: 13px;
+      opacity: .6;
+      margin-top: 2px;
+    }
+
+    /* ===================== CARDS ===================== */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .card-icon-blue { background: #dbeafe; }
+    .card-icon-green { background: #d1fae5; }
+    .card-icon-amber { background: #fef3c7; }
+    .card-icon-purple { background: #ede9fe; }
+    .card-icon-red { background: #fee2e2; }
+    .card-icon-cyan { background: #cffafe; }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    /* ===================== GRID ===================== */
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      transition: box-shadow .2s, transform .2s;
+    }
+
+    .stat-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .stat-card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .stat-card-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .stat-card-label {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    /* ===================== TABLE ===================== */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead th {
+      text-align: left;
+      padding: 12px 16px;
+      background: #f1f5f9;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--text-light);
+      border-bottom: 2px solid var(--border);
+    }
+
+    thead th:first-child { border-radius: 8px 0 0 0; }
+    thead th:last-child { border-radius: 0 8px 0 0; }
+
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    /* ===================== ROLE BADGES ===================== */
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .role-buyer { background: #dbeafe; color: #1d4ed8; }
+    .role-seller { background: #d1fae5; color: #047857; }
+    .role-admin { background: #fef3c7; color: #b45309; }
+    .role-visitor { background: #f1f5f9; color: #475569; }
+
+    /* ===================== STATUS PIPELINE ===================== */
+    .status-pipeline {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .status-step {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .status-arrow {
+      color: var(--text-light);
+      font-size: 18px;
+    }
+
+    .status-pending { background: #f1f5f9; color: #475569; }
+    .status-paid { background: #dbeafe; color: #1d4ed8; }
+    .status-processing { background: #fef3c7; color: #b45309; }
+    .status-shipped { background: #ede9fe; color: #6d28d9; }
+    .status-delivered { background: #d1fae5; color: #047857; }
+    .status-cancelled { background: #fee2e2; color: #dc2626; }
+
+    /* ===================== FEATURE LIST ===================== */
+    .feature-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-item:last-child { border-bottom: none; }
+
+    .feature-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #d1fae5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .feature-text strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .feature-text span {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    /* ===================== TECH STACK ===================== */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .tech-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: all .2s;
+    }
+
+    .tech-item:hover {
+      border-color: var(--primary-light);
+      box-shadow: var(--shadow);
+    }
+
+    .tech-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .tech-name {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .tech-desc {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    /* ===================== MERMAID ===================== */
+    .mermaid-wrapper {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 20px 0;
+      overflow-x: auto;
+      box-shadow: var(--shadow);
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ===================== SCENARIO ===================== */
+    .scenario {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .scenario-header:hover { background: #f8fafc; }
+
+    .scenario-title {
+      font-weight: 700;
+      font-size: 15px;
+      flex: 1;
+    }
+
+    .scenario-toggle {
+      font-size: 18px;
+      color: var(--text-light);
+      transition: transform .2s;
+    }
+
+    .scenario-body {
+      padding: 20px;
+      display: none;
+    }
+
+    .scenario.open .scenario-body { display: block; }
+    .scenario.open .scenario-toggle { transform: rotate(180deg); }
+
+    .scenario-row {
+      display: flex;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .scenario-row:last-child { border-bottom: none; }
+
+    .scenario-label {
+      width: 140px;
+      flex-shrink: 0;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    .scenario-value {
+      font-size: 14px;
+      flex: 1;
+    }
+
+    /* ===================== CODE BLOCK ===================== */
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    .code-block .comment { color: #64748b; }
+    .code-block .cmd { color: #38bdf8; }
+
+    /* ===================== TREE ===================== */
+    .file-tree {
+      font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+      font-size: 13px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      line-height: 1.8;
+    }
+
+    .file-tree .folder { color: var(--primary); font-weight: 600; }
+    .file-tree .file { color: var(--text); }
+    .file-tree .desc { color: var(--text-light); font-style: italic; }
+
+    /* ===================== ENDPOINT TABLE ===================== */
+    .method-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .method-get { background: #d1fae5; color: #047857; }
+    .method-post { background: #dbeafe; color: #1d4ed8; }
+    .method-patch { background: #fef3c7; color: #b45309; }
+    .method-delete { background: #fee2e2; color: #dc2626; }
+
+    .endpoint-url {
+      font-family: 'SF Mono', Consolas, monospace;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* ===================== SECTION HEADINGS ===================== */
+    h2.section-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    h3.subsection-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 28px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-desc {
+      color: var(--text-light);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    /* ===================== ALERT BOX ===================== */
+    .alert {
+      display: flex;
+      gap: 12px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    .alert-icon { font-size: 18px; flex-shrink: 0; }
+    .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+    .alert-warning { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+    .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+
+    /* ===================== USE CASE CARD ===================== */
+    .uc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .uc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      transition: all .2s;
+    }
+
+    .uc-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+
+    .uc-card-id {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .uc-card-name {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 6px 0;
+    }
+
+    .uc-card-desc {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* ===================== FIXTURE TABLE ===================== */
+    .fixture-highlight {
+      background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius);
+      padding: 20px;
+      margin: 16px 0;
+    }
+
+    .fixture-highlight h4 {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .fixture-accounts {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .fixture-account {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .fixture-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .fixture-name {
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .fixture-email {
+      font-size: 11px;
+      color: var(--text-light);
+      font-family: monospace;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .main { margin-left: 0; }
+      .mobile-toggle { display: block; }
+      .content { padding: 24px 16px; }
+      .hero { padding: 32px 24px; }
+      .hero h1 { font-size: 24px; }
+      .hero-stats { gap: 20px; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .topbar { padding: 0 16px; }
+    }
+
+    /* Overlay for mobile sidebar */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.5);
+      z-index: 90;
+    }
+
+    .sidebar-overlay.open { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a class="sidebar-logo" href="#">
+      <div class="sidebar-logo-icon">&#128722;</div>
+      <div>
+        <div class="sidebar-logo-text">TogoMarket</div>
+        <div class="sidebar-logo-sub">Documentation v1.0</div>
+      </div>
+    </a>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Cahier des charges</div>
+      <a class="sidebar-link active" href="#" data-page="accueil">
+        <span class="sidebar-link-icon">&#127968;</span> Accueil
+      </a>
+      <a class="sidebar-link" href="#" data-page="acteurs">
+        <span class="sidebar-link-icon">&#128101;</span> Acteurs & Roles
+      </a>
+      <a class="sidebar-link" href="#" data-page="fonctionnalites">
+        <span class="sidebar-link-icon">&#9889;</span> Fonctionnalites
+      </a>
+      <a class="sidebar-link" href="#" data-page="donnees">
+        <span class="sidebar-link-icon">&#128450;</span> Modele de donnees
+      </a>
+      <a class="sidebar-link" href="#" data-page="architecture">
+        <span class="sidebar-link-icon">&#9881;</span> Architecture
+      </a>
+      <a class="sidebar-link" href="#" data-page="api">
+        <span class="sidebar-link-icon">&#128279;</span> API & Endpoints
+      </a>
+      <a class="sidebar-link" href="#" data-page="ecrans">
+        <span class="sidebar-link-icon">&#128241;</span> Ecrans (UI)
+      </a>
+      <a class="sidebar-link" href="#" data-page="regles">
+        <span class="sidebar-link-icon">&#128220;</span> Regles metier
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Cas d'utilisation</div>
+      <a class="sidebar-link" href="#" data-page="uc-diagrammes">
+        <span class="sidebar-link-icon">&#128202;</span> Diagrammes
+      </a>
+      <a class="sidebar-link" href="#" data-page="uc-visiteur">
+        <span class="sidebar-link-icon">&#128064;</span> Visiteur
+      </a>
+      <a class="sidebar-link" href="#" data-page="uc-acheteur">
+        <span class="sidebar-link-icon">&#128722;</span> Acheteur
+      </a>
+      <a class="sidebar-link" href="#" data-page="uc-vendeur">
+        <span class="sidebar-link-icon">&#127978;</span> Vendeur
+      </a>
+      <a class="sidebar-link" href="#" data-page="uc-admin">
+        <span class="sidebar-link-icon">&#128737;</span> Administrateur
+      </a>
+      <a class="sidebar-link" href="#" data-page="uc-flux">
+        <span class="sidebar-link-icon">&#128260;</span> Flux de commande
+      </a>
+      <a class="sidebar-link" href="#" data-page="uc-scenarios">
+        <span class="sidebar-link-icon">&#128221;</span> Scenarios detailles
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Annexes</div>
+      <a class="sidebar-link" href="#" data-page="fixtures">
+        <span class="sidebar-link-icon">&#128190;</span> Fixtures & Tests
+      </a>
+      <a class="sidebar-link" href="#" data-page="deploiement">
+        <span class="sidebar-link-icon">&#128640;</span> Deploiement
+      </a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    &copy; 2026 TogoMarket &mdash; v1.0
+  </div>
+</aside>
+
+<!-- Mobile overlay -->
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- Main content -->
+<div class="main">
+  <header class="topbar">
+    <button class="mobile-toggle" onclick="toggleSidebar()">&#9776;</button>
+    <div class="topbar-title" id="topbar-title">Accueil</div>
+    <div class="topbar-badges">
+      <span class="badge badge-blue">Symfony 7</span>
+      <span class="badge badge-green">React Native</span>
+      <span class="badge badge-amber">FCFA</span>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ==================== ACCUEIL ==================== -->
+    <div class="page-section active" id="page-accueil">
+      <div class="hero">
+        <div class="hero-badge">&#128214; Cahier des charges</div>
+        <h1>TogoMarket</h1>
+        <p>Plateforme e-commerce marketplace au Togo. Achetez et vendez en toute confiance avec paiement securise et livraison tracee.</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value">3</div>
+            <div class="hero-stat-label">Applications</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">11</div>
+            <div class="hero-stat-label">Entites</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">15+</div>
+            <div class="hero-stat-label">Ecrans mobile</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">FCFA</div>
+            <div class="hero-stat-label">Devise (XOF)</div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Contexte</h2>
+      <p class="section-desc">Le commerce en ligne au Togo est en pleine croissance mais manque d'une plateforme marketplace locale permettant aux vendeurs togolais de vendre leurs produits en ligne et aux acheteurs de trouver facilement des produits locaux et importes.</p>
+
+      <div class="grid grid-2">
+        <div class="stat-card">
+          <div class="stat-card-icon card-icon-blue" style="background:#dbeafe;">&#128241;</div>
+          <div class="stat-card-value">Mobile-first</div>
+          <div class="stat-card-label">React Native + Expo pour Android & iOS</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon card-icon-green" style="background:#d1fae5;">&#128176;</div>
+          <div class="stat-card-value">Stripe</div>
+          <div class="stat-card-label">Paiement securise via Checkout Sessions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon card-icon-amber" style="background:#fef3c7;">&#128230;</div>
+          <div class="stat-card-value">Multi-vendeurs</div>
+          <div class="stat-card-label">1 panier, N commandes, 1 paiement</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon card-icon-purple" style="background:#ede9fe;">&#128274;</div>
+          <div class="stat-card-value">Code livraison</div>
+          <div class="stat-card-label">Code 6 chiffres pour confirmer la reception</div>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top:32px;">Perimetre</h2>
+      <div class="grid grid-3" style="margin-top:16px;">
+        <div class="stat-card" style="text-align:center;">
+          <div style="font-size:32px;margin-bottom:8px;">&#128241;</div>
+          <div class="stat-card-value" style="font-size:16px;">App Mobile</div>
+          <div class="stat-card-label">React Native / Expo</div>
+        </div>
+        <div class="stat-card" style="text-align:center;">
+          <div style="font-size:32px;margin-bottom:8px;">&#128421;</div>
+          <div class="stat-card-value" style="font-size:16px;">App Web</div>
+          <div class="stat-card-label">React / Vite / Tailwind</div>
+        </div>
+        <div class="stat-card" style="text-align:center;">
+          <div style="font-size:32px;margin-bottom:8px;">&#9881;</div>
+          <div class="stat-card-value" style="font-size:16px;">API Backend</div>
+          <div class="stat-card-label">Symfony / API Platform</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== ACTEURS ==================== -->
+    <div class="page-section" id="page-acteurs">
+      <h2 class="section-title">Acteurs & Roles</h2>
+      <p class="section-desc">Le systeme definit 4 niveaux d'acces avec une hierarchie de roles.</p>
+
+      <div class="alert alert-info">
+        <span class="alert-icon">&#128712;</span>
+        <div><strong>Hierarchie des roles :</strong> ROLE_ADMIN &gt; ROLE_SELLER &gt; ROLE_BUYER &mdash; Un admin herite de tous les droits. Un vendeur peut aussi acheter.</div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:20px;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon card-icon-blue" style="background:#f1f5f9;">&#128064;</div>
+            <div>
+              <div class="card-title">Visiteur</div>
+              <span class="role-badge role-visitor">NON CONNECTE</span>
+            </div>
+          </div>
+          <p style="font-size:14px;color:var(--text-light);">Utilisateur non connecte. Peut consulter les produits, rechercher, voir les details et s'inscrire.</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon card-icon-blue" style="background:#dbeafe;">&#128722;</div>
+            <div>
+              <div class="card-title">Acheteur</div>
+              <span class="role-badge role-buyer">ROLE_BUYER</span>
+            </div>
+          </div>
+          <p style="font-size:14px;color:var(--text-light);">Parcourt les produits, ajoute au panier, passe des commandes, suit ses livraisons, gere ses adresses.</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon card-icon-green" style="background:#d1fae5;">&#127978;</div>
+            <div>
+              <div class="card-title">Vendeur</div>
+              <span class="role-badge role-seller">ROLE_SELLER</span>
+            </div>
+          </div>
+          <p style="font-size:14px;color:var(--text-light);">Gere sa boutique : publie des produits (couleurs, tailles, images), traite les commandes, gere les expeditions et confirmations.</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon card-icon-amber" style="background:#fef3c7;">&#128737;</div>
+            <div>
+              <div class="card-title">Administrateur</div>
+              <span class="role-badge role-admin">ROLE_ADMIN</span>
+            </div>
+          </div>
+          <p style="font-size:14px;color:var(--text-light);">Gestion complete : utilisateurs, commandes, validation vendeurs, statistiques, categories. Peut marquer les commandes comme payees.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== FONCTIONNALITES ==================== -->
+    <div class="page-section" id="page-fonctionnalites">
+      <h2 class="section-title">Fonctionnalites</h2>
+      <p class="section-desc">Ensemble des modules et fonctionnalites de la plateforme.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-blue" style="background:#dbeafe;">&#127760;</div>
+          <div><div class="card-title">Module Public</div><div class="card-subtitle">Accessible a tous</div></div>
+        </div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Page d'accueil</strong><span>Barre de recherche, categories avec icones, produits recents et populaires</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Catalogue produits</strong><span>Recherche textuelle, filtres (categorie, prix, note), tri (prix, date, note), grille avec ProductCard</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Detail produit</strong><span>Galerie d'images, prix FCFA, selecteurs couleur/taille, carte vendeur cliquable, avis</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Boutique vendeur</strong><span>Banniere avec avatar, nom, nombre de produits. Grille de tous les produits du vendeur</span></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-purple" style="background:#ede9fe;">&#128274;</div>
+          <div><div class="card-title">Module Authentification</div><div class="card-subtitle">JWT + Refresh tokens</div></div>
+        </div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Inscription</strong><span>Prenom, nom, email unique, telephone optionnel, mot de passe. Compte ROLE_BUYER, connexion auto</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Connexion</strong><span>Email + mot de passe, JWT + refresh token, stockage memoire (Zustand) + SecureStore (mobile)</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Protection des routes</strong><span>Routes protegees par role, intercepteur Axios avec refresh automatique du token</span></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-blue" style="background:#dbeafe;">&#128722;</div>
+          <div><div class="card-title">Module Acheteur</div><div class="card-subtitle">ROLE_BUYER</div></div>
+        </div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Panier</strong><span>Ajout avec couleur/taille/quantite, meme produit + variante differente = articles separes, total dynamique</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Adresses</strong><span>CRUD, geolocalisation GPS avec reverse geocoding, adresse par defaut</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Checkout / Paiement</strong><span>Selection d'adresse, Stripe Checkout Sessions, split automatique par vendeur, decrementation atomique du stock</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Suivi des commandes</strong><span>Liste avec statut, detail avec timeline visuelle, code de livraison 6 chiffres</span></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-green" style="background:#d1fae5;">&#127978;</div>
+          <div><div class="card-title">Module Vendeur</div><div class="card-subtitle">ROLE_SELLER</div></div>
+        </div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Tableau de bord</strong><span>Stats (produits, commandes, revenus), commandes recentes avec stepper visuel 5 etapes</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Gestion des produits</strong><span>CRUD avec couleurs (palette 12), tailles (XS-XXL + pointures), images (galerie/camera), slug auto</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Gestion des commandes</strong><span>Avancement du statut, generation auto du code livraison, confirmation avec modal de saisie du code</span></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-amber" style="background:#fef3c7;">&#128737;</div>
+          <div><div class="card-title">Module Administration</div><div class="card-subtitle">ROLE_ADMIN</div></div>
+        </div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Statistiques globales</strong><span>Utilisateurs, produits, commandes, revenus</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Gestion des utilisateurs</strong><span>Activation/desactivation des comptes</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Validation vendeurs</strong><span>Approuver ou refuser les profils vendeurs</span></div></div>
+        <div class="feature-item"><div class="feature-check">&#10003;</div><div class="feature-text"><strong>Marquer commande payee</strong><span>Bypass Stripe pour paiements hors ligne (especes, mobile money)</span></div></div>
+      </div>
+    </div>
+
+    <!-- ==================== DONNEES ==================== -->
+    <div class="page-section" id="page-donnees">
+      <h2 class="section-title">Modele de donnees</h2>
+      <p class="section-desc">11 entites Doctrine avec identifiants UUID et relations.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-blue" style="background:#dbeafe;">&#128100;</div>
+          <div><div class="card-title">User</div><div class="card-subtitle">Utilisateur de la plateforme</div></div>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Champ</th><th>Type</th><th>Contraintes</th></tr></thead>
+            <tbody>
+              <tr><td><strong>id</strong></td><td>UUID</td><td>Cle primaire</td></tr>
+              <tr><td>email</td><td>varchar(180)</td><td>Unique, obligatoire</td></tr>
+              <tr><td>password</td><td>varchar(255)</td><td>Hashe</td></tr>
+              <tr><td>firstName</td><td>varchar(255)</td><td>Obligatoire</td></tr>
+              <tr><td>lastName</td><td>varchar(255)</td><td>Obligatoire</td></tr>
+              <tr><td>phone</td><td>varchar(50)</td><td>Optionnel</td></tr>
+              <tr><td>role</td><td>enum</td><td>BUYER, SELLER, ADMIN</td></tr>
+              <tr><td>isActive</td><td>boolean</td><td>true par defaut</td></tr>
+              <tr><td>createdAt</td><td>datetime</td><td>Auto</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-green" style="background:#d1fae5;">&#128230;</div>
+          <div><div class="card-title">Product</div><div class="card-subtitle">Produit en vente</div></div>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Champ</th><th>Type</th><th>Contraintes</th></tr></thead>
+            <tbody>
+              <tr><td><strong>id</strong></td><td>UUID</td><td>Cle primaire</td></tr>
+              <tr><td>title</td><td>varchar(255)</td><td>3-255 caracteres</td></tr>
+              <tr><td>description</td><td>text</td><td>Obligatoire</td></tr>
+              <tr><td>price</td><td>decimal(10,2)</td><td>&gt; 0 (FCFA)</td></tr>
+              <tr><td>stock</td><td>int</td><td>&gt;= 0</td></tr>
+              <tr><td>slug</td><td>varchar(255)</td><td>Unique, auto-genere</td></tr>
+              <tr><td>averageRating</td><td>decimal(3,2)</td><td>Calcule auto</td></tr>
+              <tr><td>colors</td><td>json</td><td>Tableau de codes hex</td></tr>
+              <tr><td>sizes</td><td>json</td><td>Tableau de tailles</td></tr>
+              <tr><td>seller</td><td>ManyToOne User</td><td>Auto-assigne</td></tr>
+              <tr><td>category</td><td>ManyToOne Category</td><td>Optionnel</td></tr>
+              <tr><td>images</td><td>OneToMany ProductImage</td><td>Cascade</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-amber" style="background:#fef3c7;">&#128203;</div>
+          <div><div class="card-title">Order</div><div class="card-subtitle">Commande (1 commande = 1 vendeur)</div></div>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Champ</th><th>Type</th><th>Contraintes</th></tr></thead>
+            <tbody>
+              <tr><td><strong>id</strong></td><td>UUID</td><td>Cle primaire</td></tr>
+              <tr><td>orderNumber</td><td>varchar(20)</td><td>Unique (ORD-XXXX)</td></tr>
+              <tr><td>user</td><td>ManyToOne User</td><td>L'acheteur</td></tr>
+              <tr><td>seller</td><td>ManyToOne User</td><td>Le vendeur</td></tr>
+              <tr><td>totalPrice</td><td>decimal(10,2)</td><td>Calcule</td></tr>
+              <tr><td>shippingCost</td><td>decimal(10,2)</td><td>1500 FCFA defaut</td></tr>
+              <tr><td>status</td><td>enum</td><td>pending, paid, processing, shipped, delivered, cancelled</td></tr>
+              <tr><td>deliveryCode</td><td>varchar(6)</td><td>Genere quand shipped</td></tr>
+              <tr><td>stripeSessionId</td><td>varchar(255)</td><td>Reference Stripe</td></tr>
+              <tr><td>shippingAddress</td><td>json</td><td>Snapshot adresse</td></tr>
+              <tr><td>paidAt / shippedAt</td><td>datetime</td><td>Nullable</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert alert-info" style="margin-top:12px;">
+          <span class="alert-icon">&#128712;</span>
+          <div><strong>Split par vendeur :</strong> 1 panier multi-vendeurs &rarr; N commandes (1 par vendeur), 1 paiement Stripe unique.</div>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon card-icon-purple" style="background:#ede9fe;">&#128247;</div>
+            <div><div class="card-title">ProductImage</div></div>
+          </div>
+          <p style="font-size:13px;color:var(--text-light);">Images produit. Upload via VichUploader ou URL externe (Unsplash). Position pour l'ordre d'affichage.</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon card-icon-cyan" style="background:#cffafe;">&#128193;</div>
+            <div><div class="card-title">Category</div></div>
+          </div>
+          <p style="font-size:13px;color:var(--text-light);">Categories hierarchiques (parent/enfant). Slug unique. 5 parents + 15 sous-categories.</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon card-icon-blue" style="background:#dbeafe;">&#128722;</div>
+            <div><div class="card-title">Cart / CartItem</div></div>
+          </div>
+          <p style="font-size:13px;color:var(--text-light);">Panier 1-1 User. Articles avec product, quantity, selectedColor, selectedSize.</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon card-icon-green" style="background:#d1fae5;">&#11088;</div>
+            <div><div class="card-title">Review</div></div>
+          </div>
+          <p style="font-size:13px;color:var(--text-light);">Avis avec note 1-5 et commentaire. Recalcul automatique de averageRating sur le Product.</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon card-icon-red" style="background:#fee2e2;">&#128205;</div>
+            <div><div class="card-title">Address</div></div>
+          </div>
+          <p style="font-size:13px;color:var(--text-light);">Adresses de livraison avec label, GPS (lat/lng), reperes. Adresse par defaut, geolocalisation.</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon card-icon-amber" style="background:#fef3c7;">&#127978;</div>
+            <div><div class="card-title">SellerProfile</div></div>
+          </div>
+          <p style="font-size:13px;color:var(--text-light);">Profil vendeur 1-1 User. Nom de boutique, description, statut (pending/approved/rejected), taux commission.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== ARCHITECTURE ==================== -->
+    <div class="page-section" id="page-architecture">
+      <h2 class="section-title">Architecture technique</h2>
+      <p class="section-desc">Stack technologique et organisation du projet.</p>
+
+      <div class="mermaid-wrapper">
+        <div class="mermaid">
+graph TB
+    subgraph Client
+        MOB["App Mobile - React Native / Expo"]
+        WEB["App Web - React / Vite"]
+    end
+    subgraph Backend
+        API["API Symfony 7 - API Platform 4"]
+        DB[("PostgreSQL 16")]
+        UPLOAD["Uploads - VichUploader"]
+    end
+    subgraph Services
+        STRIPE["Stripe - Checkout Sessions"]
+        MAIL["MailCatcher - Notifications"]
+    end
+    MOB -->|JWT + REST| API
+    WEB -->|JWT + REST| API
+    API --> DB
+    API --> UPLOAD
+    API -->|Checkout| STRIPE
+    STRIPE -->|Webhook| API
+    API -->|SMTP| MAIL
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Stack technologique</h3>
+      <div class="tech-grid">
+        <div class="tech-item">
+          <div class="tech-icon" style="background:#e0f2fe;">&#128241;</div>
+          <div><div class="tech-name">React Native 0.77</div><div class="tech-desc">Expo 54</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background:#dbeafe;">&#9881;</div>
+          <div><div class="tech-name">Symfony 7</div><div class="tech-desc">PHP 8.3</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background:#ede9fe;">&#128279;</div>
+          <div><div class="tech-name">API Platform 4</div><div class="tech-desc">JSON-LD</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background:#d1fae5;">&#128450;</div>
+          <div><div class="tech-name">PostgreSQL 16</div><div class="tech-desc">Doctrine ORM</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background:#fef3c7;">&#128274;</div>
+          <div><div class="tech-name">JWT Auth</div><div class="tech-desc">Lexik + Gesdinet</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background:#fee2e2;">&#128179;</div>
+          <div><div class="tech-name">Stripe</div><div class="tech-desc">Checkout Sessions</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background:#e0f2fe;">&#128421;</div>
+          <div><div class="tech-name">React 18 + Vite</div><div class="tech-desc">Tailwind CSS v4</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background:#f3e8ff;">&#128230;</div>
+          <div><div class="tech-name">Docker</div><div class="tech-desc">PHP-FPM, Nginx, PG, Node</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background:#d1fae5;">&#128218;</div>
+          <div><div class="tech-name">Zustand</div><div class="tech-desc">State management</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background:#fef3c7;">&#128260;</div>
+          <div><div class="tech-name">TanStack Query v5</div><div class="tech-desc">Data fetching (web)</div></div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Arborescence du projet</h3>
+      <div class="file-tree">
+        <span class="folder">E-commerce/</span><br>
+        &nbsp;&nbsp;<span class="folder">backend/</span> <span class="desc">&mdash; API Symfony</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/Entity/</span> <span class="desc">&mdash; 11 entites Doctrine</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/Controller/</span> <span class="desc">&mdash; Registration, Me, Stripe, DeliveryConfirm, Admin</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/State/Processor/</span> <span class="desc">&mdash; Product, CartItem, Review processors</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/Doctrine/</span> <span class="desc">&mdash; Extensions (filtrage par user)</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/EventListener/</span> <span class="desc">&mdash; OrderStatusListener (delivery code)</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/Service/</span> <span class="desc">&mdash; StripeService, EmailService</span><br>
+        &nbsp;&nbsp;<span class="folder">frontend/</span> <span class="desc">&mdash; App web React</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/pages/</span> <span class="desc">&mdash; public/, auth/, buyer/, seller/, admin/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/store/</span> <span class="desc">&mdash; authStore, cartStore, uiStore</span><br>
+        &nbsp;&nbsp;<span class="folder">mobile/</span> <span class="desc">&mdash; App mobile React Native</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/screens/</span> <span class="desc">&mdash; 15+ ecrans</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/store/</span> <span class="desc">&mdash; useAuthStore, useCartStore, useOrderStore</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">src/services/</span> <span class="desc">&mdash; api.js (fetch + JWT)</span><br>
+      </div>
+    </div>
+
+    <!-- ==================== API ==================== -->
+    <div class="page-section" id="page-api">
+      <h2 class="section-title">API & Endpoints</h2>
+      <p class="section-desc">Base URL : <code style="background:#f1f5f9;padding:2px 8px;border-radius:4px;">http://localhost:8888/api</code> &mdash; Format JSON-LD (API Platform 4) &mdash; Auth JWT Bearer</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-blue" style="background:#dbeafe;">&#128279;</div>
+          <div><div class="card-title">Endpoints custom</div><div class="card-subtitle">En plus des CRUD auto-generes par API Platform</div></div>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Methode</th><th>URL</th><th>Description</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td><span class="method-badge method-post">POST</span></td><td class="endpoint-url">/api/register</td><td>Inscription</td><td><span class="role-badge role-visitor">Public</span></td></tr>
+              <tr><td><span class="method-badge method-post">POST</span></td><td class="endpoint-url">/api/login</td><td>Connexion JWT</td><td><span class="role-badge role-visitor">Public</span></td></tr>
+              <tr><td><span class="method-badge method-post">POST</span></td><td class="endpoint-url">/api/token/refresh</td><td>Rafraichir JWT</td><td><span class="role-badge role-buyer">Auth</span></td></tr>
+              <tr><td><span class="method-badge method-get">GET</span></td><td class="endpoint-url">/api/me</td><td>Profil connecte</td><td><span class="role-badge role-buyer">Auth</span></td></tr>
+              <tr><td><span class="method-badge method-patch">PATCH</span></td><td class="endpoint-url">/api/me</td><td>Modifier profil</td><td><span class="role-badge role-buyer">Auth</span></td></tr>
+              <tr><td><span class="method-badge method-post">POST</span></td><td class="endpoint-url">/api/checkout/create-session</td><td>Creer session Stripe</td><td><span class="role-badge role-buyer">BUYER</span></td></tr>
+              <tr><td><span class="method-badge method-post">POST</span></td><td class="endpoint-url">/api/stripe/webhook</td><td>Webhook Stripe</td><td><span class="role-badge role-visitor">Public</span></td></tr>
+              <tr><td><span class="method-badge method-post">POST</span></td><td class="endpoint-url">/api/product-images/upload</td><td>Upload image</td><td><span class="role-badge role-seller">SELLER</span></td></tr>
+              <tr><td><span class="method-badge method-post">POST</span></td><td class="endpoint-url">/api/orders/{id}/confirm-delivery</td><td>Confirmer livraison</td><td><span class="role-badge role-seller">SELLER</span></td></tr>
+              <tr><td><span class="method-badge method-get">GET</span></td><td class="endpoint-url">/api/orders/{id}/delivery-code</td><td>Voir code livraison</td><td><span class="role-badge role-buyer">BUYER</span></td></tr>
+              <tr><td><span class="method-badge method-get">GET</span></td><td class="endpoint-url">/api/admin/dashboard</td><td>Stats admin</td><td><span class="role-badge role-admin">ADMIN</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== ECRANS ==================== -->
+    <div class="page-section" id="page-ecrans">
+      <h2 class="section-title">Ecrans (UI Mobile)</h2>
+      <p class="section-desc">15+ ecrans React Native avec theme clair/sombre et design responsive.</p>
+
+      <div class="card">
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Ecran</th><th>Acces</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><strong>LoginScreen</strong></td><td><span class="role-badge role-visitor">Public</span></td><td>Connexion + boutons de test rapide</td></tr>
+              <tr><td><strong>RegisterScreen</strong></td><td><span class="role-badge role-visitor">Public</span></td><td>Inscription (prenom, nom, email, mdp)</td></tr>
+              <tr><td><strong>HomeScreen</strong></td><td><span class="role-badge role-buyer">Auth</span></td><td>Accueil avec recherche, categories, produits</td></tr>
+              <tr><td><strong>ProductDetailScreen</strong></td><td><span class="role-badge role-buyer">Auth</span></td><td>Detail produit avec galerie, variantes, vendeur</td></tr>
+              <tr><td><strong>SellerShopScreen</strong></td><td><span class="role-badge role-buyer">Auth</span></td><td>Boutique d'un vendeur avec grille de produits</td></tr>
+              <tr><td><strong>CartScreen</strong></td><td><span class="role-badge role-buyer">BUYER</span></td><td>Panier avec couleur/taille/quantite</td></tr>
+              <tr><td><strong>CheckoutScreen</strong></td><td><span class="role-badge role-buyer">BUYER</span></td><td>Paiement + selection d'adresse</td></tr>
+              <tr><td><strong>OrdersScreen</strong></td><td><span class="role-badge role-buyer">BUYER</span></td><td>Liste des commandes avec statut</td></tr>
+              <tr><td><strong>OrderDetailScreen</strong></td><td><span class="role-badge role-buyer">BUYER</span></td><td>Detail + timeline + code livraison</td></tr>
+              <tr><td><strong>ProfileScreen</strong></td><td><span class="role-badge role-buyer">Auth</span></td><td>Profil avec stats et parametres</td></tr>
+              <tr><td><strong>AddressesScreen</strong></td><td><span class="role-badge role-buyer">BUYER</span></td><td>Gestion adresses + GPS</td></tr>
+              <tr><td><strong>SellerDashboardScreen</strong></td><td><span class="role-badge role-seller">SELLER</span></td><td>Tableau de bord vendeur + gestion commandes</td></tr>
+              <tr><td><strong>SellerProductsScreen</strong></td><td><span class="role-badge role-seller">SELLER</span></td><td>Liste des produits du vendeur</td></tr>
+              <tr><td><strong>AddProductScreen</strong></td><td><span class="role-badge role-seller">SELLER</span></td><td>Creation/edition produit (couleurs, tailles, images)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== REGLES ==================== -->
+    <div class="page-section" id="page-regles">
+      <h2 class="section-title">Regles metier</h2>
+      <p class="section-desc">Ensemble des regles de gestion de la plateforme.</p>
+
+      <div class="card">
+        <div class="feature-item"><div class="feature-check" style="background:#dbeafe;color:#1d4ed8;font-weight:800;">1</div><div class="feature-text"><strong>Inscription</strong><span>Gratuite, cree un compte ROLE_BUYER. Email unique. Connexion automatique.</span></div></div>
+        <div class="feature-item"><div class="feature-check" style="background:#dbeafe;color:#1d4ed8;font-weight:800;">2</div><div class="feature-text"><strong>Hierarchie des roles</strong><span>ADMIN &gt; SELLER &gt; BUYER. Un vendeur peut aussi acheter.</span></div></div>
+        <div class="feature-item"><div class="feature-check" style="background:#dbeafe;color:#1d4ed8;font-weight:800;">3</div><div class="feature-text"><strong>Variantes</strong><span>Un produit peut avoir des couleurs et/ou des tailles. L'acheteur doit selectionner avant d'ajouter au panier.</span></div></div>
+        <div class="feature-item"><div class="feature-check" style="background:#dbeafe;color:#1d4ed8;font-weight:800;">4</div><div class="feature-text"><strong>Panier intelligent</strong><span>Meme produit + couleur/taille differente = articles separes.</span></div></div>
+        <div class="feature-item"><div class="feature-check" style="background:#dbeafe;color:#1d4ed8;font-weight:800;">5</div><div class="feature-text"><strong>Commande split</strong><span>Si le panier contient des produits de N vendeurs, N commandes sont creees avec 1 seul paiement Stripe.</span></div></div>
+        <div class="feature-item"><div class="feature-check" style="background:#dbeafe;color:#1d4ed8;font-weight:800;">6</div><div class="feature-text"><strong>Stock atomique</strong><span>Decremente via SQL atomique apres confirmation du paiement. Verification avant ajout au panier.</span></div></div>
+        <div class="feature-item"><div class="feature-check" style="background:#dbeafe;color:#1d4ed8;font-weight:800;">7</div><div class="feature-text"><strong>Code de livraison</strong><span>6 chiffres genere quand statut &rarr; "expediee". Visible uniquement par l'acheteur. Le vendeur saisit le code pour confirmer.</span></div></div>
+        <div class="feature-item"><div class="feature-check" style="background:#dbeafe;color:#1d4ed8;font-weight:800;">8</div><div class="feature-text"><strong>Statuts commande</strong><span>pending &rarr; paid (Stripe/admin) &rarr; processing &rarr; shipped &rarr; delivered</span></div></div>
+        <div class="feature-item"><div class="feature-check" style="background:#dbeafe;color:#1d4ed8;font-weight:800;">9</div><div class="feature-text"><strong>pending &rarr; paid</strong><span>Uniquement par Stripe webhook ou par l'administrateur (paiements hors ligne).</span></div></div>
+        <div class="feature-item"><div class="feature-check" style="background:#dbeafe;color:#1d4ed8;font-weight:800;">10</div><div class="feature-text"><strong>Securite</strong><span>Le vendeur ne voit que ses commandes. L'acheteur ne voit que les siennes. Le code livraison n'est pas expose dans l'API standard.</span></div></div>
+      </div>
+
+      <h3 class="subsection-title">Pipeline des statuts</h3>
+      <div class="status-pipeline">
+        <div class="status-step status-pending">&#9711; Pending</div>
+        <span class="status-arrow">&rarr;</span>
+        <div class="status-step status-paid">&#128179; Paid</div>
+        <span class="status-arrow">&rarr;</span>
+        <div class="status-step status-processing">&#128230; Processing</div>
+        <span class="status-arrow">&rarr;</span>
+        <div class="status-step status-shipped">&#128666; Shipped</div>
+        <span class="status-arrow">&rarr;</span>
+        <div class="status-step status-delivered">&#9989; Delivered</div>
+      </div>
+      <div style="margin-top:8px;">
+        <div class="status-step status-cancelled" style="display:inline-flex;">&#10060; Cancelled</div>
+        <span style="color:var(--text-light);font-size:13px;margin-left:8px;">(depuis pending uniquement)</span>
+      </div>
+    </div>
+
+    <!-- ==================== UC - DIAGRAMMES ==================== -->
+    <div class="page-section" id="page-uc-diagrammes">
+      <h2 class="section-title">Diagrammes</h2>
+      <p class="section-desc">Vues d'ensemble des cas d'utilisation par acteur.</p>
+
+      <h3 class="subsection-title">Diagramme des cas d'utilisation</h3>
+      <div class="mermaid-wrapper">
+        <div class="mermaid">
+graph LR
+    subgraph Visiteur
+        V1[Consulter les produits]
+        V2[Rechercher / filtrer]
+        V3[Voir le detail d un produit]
+        V4[S inscrire]
+        V5[Se connecter]
+    end
+    subgraph Acheteur
+        A1[Ajouter au panier]
+        A2[Gerer le panier]
+        A3[Passer commande]
+        A4[Suivre ses commandes]
+        A5[Voir le code de livraison]
+        A6[Gerer ses adresses + GPS]
+        A7[Voir la boutique vendeur]
+        A8[Modifier son profil]
+    end
+    subgraph Vendeur
+        S1[Gerer ses produits]
+        S2[Tableau de bord]
+        S3[Avancer le statut]
+        S4[Confirmer livraison avec code]
+    end
+    subgraph Admin
+        AD1[Statistiques globales]
+        AD2[Gerer les utilisateurs]
+        AD3[Valider les vendeurs]
+        AD4[Marquer commande payee]
+    end
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Diagramme d'etats &mdash; Commande</h3>
+      <div class="mermaid-wrapper">
+        <div class="mermaid">
+stateDiagram-v2
+    [*] --> pending : Commande creee
+    pending --> paid : Webhook Stripe / Admin
+    pending --> cancelled : Timeout / annulation
+    paid --> processing : Vendeur
+    processing --> shipped : Vendeur - Code livraison genere
+    shipped --> delivered : Vendeur + Code client
+    delivered --> [*]
+    cancelled --> [*]
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Diagramme d'etats &mdash; Code de livraison</h3>
+      <div class="mermaid-wrapper">
+        <div class="mermaid">
+stateDiagram-v2
+    [*] --> Inexistant : Commande creee
+    Inexistant --> Genere : Status shipped - 6 chiffres
+    Genere --> Visible_acheteur : GET /delivery-code
+    Visible_acheteur --> Communique : Acheteur donne le code
+    Communique --> Verifie : POST /confirm-delivery
+    Verifie --> Valide : Code correct - delivered
+    Verifie --> Refuse : Code incorrect
+    Refuse --> Communique
+    Valide --> Supprime : Code efface
+    Supprime --> [*]
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== UC - VISITEUR ==================== -->
+    <div class="page-section" id="page-uc-visiteur">
+      <h2 class="section-title">Cas d'utilisation &mdash; Visiteur</h2>
+      <p class="section-desc">Utilisateur non connecte.</p>
+
+      <div class="uc-grid">
+        <div class="uc-card">
+          <div class="uc-card-id">CU-V01</div>
+          <div class="uc-card-name">Consulter la page d'accueil</div>
+          <div class="uc-card-desc">Accede a la page d'accueil avec categories, produits recents et barre de recherche.</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-card-id">CU-V02</div>
+          <div class="uc-card-name">Rechercher un produit</div>
+          <div class="uc-card-desc">Saisit un mot-cle dans la barre de recherche. Liste filtree affichee.</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-card-id">CU-V03</div>
+          <div class="uc-card-name">Voir le detail d'un produit</div>
+          <div class="uc-card-desc">Galerie, prix, couleurs, tailles, vendeur, avis clients.</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-card-id">CU-V04</div>
+          <div class="uc-card-name">S'inscrire</div>
+          <div class="uc-card-desc">Cree un compte avec prenom, nom, email, mot de passe. Compte ROLE_BUYER, connexion auto.</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-card-id">CU-V05</div>
+          <div class="uc-card-name">Se connecter</div>
+          <div class="uc-card-desc">Email + mot de passe. Token JWT delivre pour acceder a l'application.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== UC - ACHETEUR ==================== -->
+    <div class="page-section" id="page-uc-acheteur">
+      <h2 class="section-title">Cas d'utilisation &mdash; Acheteur</h2>
+      <p class="section-desc"><span class="role-badge role-buyer">ROLE_BUYER</span></p>
+
+      <div class="uc-grid">
+        <div class="uc-card"><div class="uc-card-id">CU-A01</div><div class="uc-card-name">Selectionner les variantes</div><div class="uc-card-desc">Choisir couleur (dot) et taille (chip) sur la page detail.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A02</div><div class="uc-card-name">Ajouter au panier</div><div class="uc-card-desc">Ajoute un produit avec quantite, couleur et taille. Verification du stock.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A03</div><div class="uc-card-name">Gerer le panier</div><div class="uc-card-desc">Modifie les quantites ou supprime des articles du panier.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A04</div><div class="uc-card-name">Gerer ses adresses</div><div class="uc-card-desc">CRUD adresses de livraison avec label, ville, pays, reperes.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A05</div><div class="uc-card-name">Utiliser la geolocalisation</div><div class="uc-card-desc">Bouton GPS pour remplir automatiquement rue, ville, pays.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A06</div><div class="uc-card-name">Passer commande</div><div class="uc-card-desc">Selectionne une adresse, paye via Stripe. Split automatique par vendeur.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A07</div><div class="uc-card-name">Consulter ses commandes</div><div class="uc-card-desc">Liste des commandes avec statut, date, montant.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A08</div><div class="uc-card-name">Voir le detail d'une commande</div><div class="uc-card-desc">Timeline visuelle, articles, adresse et total.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A09</div><div class="uc-card-name">Voir le code de livraison</div><div class="uc-card-desc">Code 6 chiffres visible quand commande expediee.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A10</div><div class="uc-card-name">Communiquer le code</div><div class="uc-card-desc">Donne le code au livreur/vendeur pour confirmer la reception.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A11</div><div class="uc-card-name">Voir la boutique d'un vendeur</div><div class="uc-card-desc">Clic sur le vendeur dans la page detail pour voir tous ses produits.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-A12</div><div class="uc-card-name">Modifier son profil</div><div class="uc-card-desc">Modification du prenom, nom, telephone.</div></div>
+      </div>
+    </div>
+
+    <!-- ==================== UC - VENDEUR ==================== -->
+    <div class="page-section" id="page-uc-vendeur">
+      <h2 class="section-title">Cas d'utilisation &mdash; Vendeur</h2>
+      <p class="section-desc"><span class="role-badge role-seller">ROLE_SELLER</span></p>
+
+      <div class="uc-grid">
+        <div class="uc-card"><div class="uc-card-id">CU-S01</div><div class="uc-card-name">Voir le tableau de bord</div><div class="uc-card-desc">Stats : produits, commandes, revenus.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-S02</div><div class="uc-card-name">Creer un produit</div><div class="uc-card-desc">Titre, description, prix FCFA, stock, categorie, couleurs, tailles, images.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-S03</div><div class="uc-card-name">Modifier un produit</div><div class="uc-card-desc">Modifier un de ses produits (proprietaire uniquement).</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-S04</div><div class="uc-card-name">Supprimer un produit</div><div class="uc-card-desc">Suppression avec confirmation. Produit et images supprimes.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-S05</div><div class="uc-card-name">Uploader des images</div><div class="uc-card-desc">Photos depuis galerie ou camera du telephone.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-S06</div><div class="uc-card-name">Gerer les couleurs</div><div class="uc-card-desc">Selection parmi 12 couleurs predefinies.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-S07</div><div class="uc-card-name">Gerer les tailles</div><div class="uc-card-desc">Vetements (XS-XXL) ou chaussures (36-45).</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-S08</div><div class="uc-card-name">Voir ses commandes</div><div class="uc-card-desc">Commandes contenant ses produits uniquement.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-S09</div><div class="uc-card-name">Lancer la preparation</div><div class="uc-card-desc">Commande payee &rarr; "En preparation".</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-S10</div><div class="uc-card-name">Marquer comme expediee</div><div class="uc-card-desc">Processing &rarr; Shipped. Code livraison 6 chiffres genere automatiquement.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-S11</div><div class="uc-card-name">Confirmer la livraison</div><div class="uc-card-desc">Saisir le code 6 chiffres du client. Si correct &rarr; "delivered".</div></div>
+      </div>
+    </div>
+
+    <!-- ==================== UC - ADMIN ==================== -->
+    <div class="page-section" id="page-uc-admin">
+      <h2 class="section-title">Cas d'utilisation &mdash; Administrateur</h2>
+      <p class="section-desc"><span class="role-badge role-admin">ROLE_ADMIN</span></p>
+
+      <div class="uc-grid">
+        <div class="uc-card"><div class="uc-card-id">CU-AD01</div><div class="uc-card-name">Voir les statistiques</div><div class="uc-card-desc">Stats globales : utilisateurs, produits, commandes, revenus.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-AD02</div><div class="uc-card-name">Gerer les utilisateurs</div><div class="uc-card-desc">Activer/desactiver des comptes utilisateurs.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-AD03</div><div class="uc-card-name">Valider un vendeur</div><div class="uc-card-desc">Approuver ou refuser un profil vendeur en attente.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-AD04</div><div class="uc-card-name">Gerer les categories</div><div class="uc-card-desc">CRUD categories et sous-categories.</div></div>
+        <div class="uc-card"><div class="uc-card-id">CU-AD05</div><div class="uc-card-name">Marquer commande payee</div><div class="uc-card-desc">Passer une commande "pending" en "paid" pour les paiements hors ligne (especes, mobile money).</div></div>
+      </div>
+    </div>
+
+    <!-- ==================== UC - FLUX ==================== -->
+    <div class="page-section" id="page-uc-flux">
+      <h2 class="section-title">Flux de commande</h2>
+      <p class="section-desc">Processus complet de la commande, de l'ajout au panier jusqu'a la livraison confirmee.</p>
+
+      <h3 class="subsection-title">Flux standard</h3>
+      <div class="mermaid-wrapper">
+        <div class="mermaid">
+sequenceDiagram
+    actor Client as Acheteur
+    participant Cart as Panier
+    participant API as API Backend
+    participant Stripe as Stripe
+    actor Vendeur as Vendeur
+
+    Note over Client,Vendeur: PHASE 1 - Achat
+
+    Client->>Cart: Ajoute produits (couleur, taille, quantite)
+    Client->>API: POST /checkout/create-session
+    Note over API: Split panier par vendeur - N commandes (pending)
+    API->>Stripe: Cree Checkout Session (1 paiement unique)
+    Stripe-->>Client: Page de paiement
+    Client->>Stripe: Paye
+    Stripe->>API: Webhook: payment confirmed
+    Note over API: Toutes commandes paid - Stock decremente - Panier vide
+
+    Note over Client,Vendeur: PHASE 2 - Preparation
+
+    Vendeur->>API: PATCH /orders/{id} status: processing
+
+    Note over Client,Vendeur: PHASE 3 - Expedition
+
+    Vendeur->>API: PATCH /orders/{id} status: shipped
+    Note over API: Code livraison 6 chiffres genere
+    Client->>API: GET /orders/{id}/delivery-code
+    Note over Client: Voit le code: 472831
+
+    Note over Client,Vendeur: PHASE 4 - Livraison
+
+    Client-->>Vendeur: Communique le code: 472831
+    Vendeur->>API: POST /orders/{id}/confirm-delivery code: 472831
+    Note over API: Code verifie - Status delivered
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Flux multi-vendeurs</h3>
+      <div class="alert alert-warning">
+        <span class="alert-icon">&#9888;</span>
+        <div><strong>Cas multi-vendeurs :</strong> Sophie achete un iPhone chez Kofi (TechLome) et une robe chez Ama (AfroStyle). 1 seul paiement, 2 commandes independantes, 2 livraisons separees.</div>
+      </div>
+      <div class="mermaid-wrapper">
+        <div class="mermaid">
+sequenceDiagram
+    actor Sophie as Sophie
+    participant API as API Backend
+    participant Stripe as Stripe
+    actor Kofi as Kofi (TechLome)
+    actor Ama as Ama (AfroStyle)
+
+    Sophie->>API: Panier: iPhone (Kofi) + Robe (Ama)
+    Sophie->>API: POST /checkout/create-session
+
+    Note over API: Split par vendeur: Commande 1 Kofi - Commande 2 Ama
+
+    API->>Stripe: 1 seul paiement (total)
+    Stripe-->>Sophie: Paye une seule fois
+    Stripe->>API: Webhook - les 2 commandes passent en paid
+
+    Note over Kofi,Ama: Chaque vendeur gere independamment
+
+    Kofi->>API: Commande 1 - processing - shipped
+    Note over API: Code livraison: 384721
+    Sophie->>Kofi: Code: 384721
+    Kofi->>API: confirm-delivery 384721
+
+    Note over Ama: 3 jours plus tard...
+
+    Ama->>API: Commande 2 - processing - shipped
+    Note over API: Code livraison: 159462
+    Sophie->>Ama: Code: 159462
+    Ama->>API: confirm-delivery 159462
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== UC - SCENARIOS ==================== -->
+    <div class="page-section" id="page-uc-scenarios">
+      <h2 class="section-title">Scenarios detailles</h2>
+      <p class="section-desc">Description complete des cas d'utilisation principaux.</p>
+
+      <div class="scenario open">
+        <div class="scenario-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="role-badge role-visitor">Visiteur</span>
+          <span class="scenario-title">CU-V04 : S'inscrire</span>
+          <span class="scenario-toggle">&#9660;</span>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row"><div class="scenario-label">Acteur</div><div class="scenario-value">Visiteur</div></div>
+          <div class="scenario-row"><div class="scenario-label">Precondition</div><div class="scenario-value">Aucune</div></div>
+          <div class="scenario-row"><div class="scenario-label">Scenario principal</div><div class="scenario-value">1. Le visiteur clique sur "Creer un compte"<br>2. Il remplit : prenom, nom, email, mot de passe<br>3. Le systeme verifie l'unicite de l'email<br>4. Le compte est cree avec ROLE_BUYER<br>5. Le systeme connecte automatiquement l'utilisateur<br>6. Redirection vers l'accueil</div></div>
+          <div class="scenario-row"><div class="scenario-label">Scenario alternatif</div><div class="scenario-value">3a. L'email existe deja &rarr; message d'erreur</div></div>
+          <div class="scenario-row"><div class="scenario-label">Postcondition</div><div class="scenario-value">Compte cree, utilisateur connecte</div></div>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="role-badge role-buyer">Acheteur</span>
+          <span class="scenario-title">CU-A02 : Ajouter au panier</span>
+          <span class="scenario-toggle">&#9660;</span>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row"><div class="scenario-label">Acteur</div><div class="scenario-value">Acheteur</div></div>
+          <div class="scenario-row"><div class="scenario-label">Precondition</div><div class="scenario-value">Connecte, page detail produit</div></div>
+          <div class="scenario-row"><div class="scenario-label">Scenario principal</div><div class="scenario-value">1. L'acheteur selectionne une couleur (si disponible)<br>2. Il selectionne une taille (si disponible)<br>3. Il choisit la quantite<br>4. Il clique sur "Ajouter"<br>5. Le systeme verifie le stock<br>6. L'article est ajoute au panier avec les variantes</div></div>
+          <div class="scenario-row"><div class="scenario-label">Scenario alternatif</div><div class="scenario-value">1a. Couleur requise mais non selectionnee &rarr; alerte<br>2a. Taille requise mais non selectionnee &rarr; alerte<br>5a. Stock insuffisant &rarr; erreur<br>6a. Meme produit+couleur+taille deja dans le panier &rarr; quantites fusionnees</div></div>
+          <div class="scenario-row"><div class="scenario-label">Postcondition</div><div class="scenario-value">Article dans le panier</div></div>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="role-badge role-buyer">Acheteur</span>
+          <span class="scenario-title">CU-A06 : Passer commande (multi-vendeurs)</span>
+          <span class="scenario-toggle">&#9660;</span>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row"><div class="scenario-label">Acteur</div><div class="scenario-value">Acheteur</div></div>
+          <div class="scenario-row"><div class="scenario-label">Precondition</div><div class="scenario-value">Panier non vide, au moins une adresse</div></div>
+          <div class="scenario-row"><div class="scenario-label">Scenario principal</div><div class="scenario-value">1. L'acheteur va au checkout<br>2. Il selectionne une adresse de livraison<br>3. Il clique sur "Payer"<br>4. Le systeme groupe les articles par vendeur<br>5. 1 commande par vendeur est creee (status: pending)<br>6. 1 session Stripe est creee avec le total<br>7. L'acheteur est redirige vers la page Stripe<br>8. Apres paiement, le webhook met toutes les commandes en "paid"<br>9. Le stock est decremente, le panier vide</div></div>
+          <div class="scenario-row"><div class="scenario-label">Scenario alternatif</div><div class="scenario-value">5a. Stock insuffisant pour un produit &rarr; erreur avec nom du produit</div></div>
+          <div class="scenario-row"><div class="scenario-label">Postcondition</div><div class="scenario-value">N commandes creees, panier vide</div></div>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="role-badge role-seller">Vendeur</span>
+          <span class="scenario-title">CU-S11 : Confirmer la livraison avec code</span>
+          <span class="scenario-toggle">&#9660;</span>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row"><div class="scenario-label">Acteur</div><div class="scenario-value">Vendeur</div></div>
+          <div class="scenario-row"><div class="scenario-label">Precondition</div><div class="scenario-value">Commande en statut "shipped"</div></div>
+          <div class="scenario-row"><div class="scenario-label">Scenario principal</div><div class="scenario-value">1. Le vendeur clique sur "Confirmer livraison"<br>2. Un modal s'ouvre avec un champ de saisie 6 chiffres<br>3. Le vendeur demande le code au client<br>4. Il saisit le code et clique "Confirmer"<br>5. Le systeme verifie le code cote serveur<br>6. Si correct : commande &rarr; "delivered", code efface</div></div>
+          <div class="scenario-row"><div class="scenario-label">Scenario alternatif</div><div class="scenario-value">5a. Code incorrect &rarr; erreur "Code de livraison incorrect"<br>4a. Code incomplet (&lt; 6 chiffres) &rarr; bouton desactive</div></div>
+          <div class="scenario-row"><div class="scenario-label">Postcondition</div><div class="scenario-value">Commande livree, code supprime</div></div>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="role-badge role-admin">Admin</span>
+          <span class="scenario-title">CU-AD05 : Marquer commande payee</span>
+          <span class="scenario-toggle">&#9660;</span>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row"><div class="scenario-label">Acteur</div><div class="scenario-value">Administrateur</div></div>
+          <div class="scenario-row"><div class="scenario-label">Precondition</div><div class="scenario-value">Connecte admin, commande en statut "pending"</div></div>
+          <div class="scenario-row"><div class="scenario-label">Scenario principal</div><div class="scenario-value">1. L'admin voit une commande en attente de paiement<br>2. Il clique sur "Marquer payee"<br>3. Confirmation demandee<br>4. Le statut passe a "paid"</div></div>
+          <div class="scenario-row"><div class="scenario-label">Cas d'usage</div><div class="scenario-value">Paiement en especes, virement bancaire, mobile money &mdash; le paiement est confirme hors Stripe</div></div>
+          <div class="scenario-row"><div class="scenario-label">Postcondition</div><div class="scenario-value">Commande payee, vendeur peut commencer la preparation</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== FIXTURES ==================== -->
+    <div class="page-section" id="page-fixtures">
+      <h2 class="section-title">Fixtures & Donnees de test</h2>
+      <p class="section-desc">Jeux de donnees pre-charges pour le developpement et les tests.</p>
+
+      <h3 class="subsection-title">Comptes de test</h3>
+      <div class="alert alert-success">
+        <span class="alert-icon">&#128274;</span>
+        <div><strong>Mot de passe universel :</strong> <code style="background:rgba(0,0,0,.1);padding:2px 8px;border-radius:4px;">password</code> pour tous les comptes de test.</div>
+      </div>
+
+      <div class="fixture-accounts" style="margin-top:16px;">
+        <div class="fixture-account">
+          <div class="fixture-avatar" style="background:#fef3c7;">&#128737;</div>
+          <div><div class="fixture-name">Admin</div><div class="fixture-email">admin@togoshop.tg</div></div>
+        </div>
+        <div class="fixture-account">
+          <div class="fixture-avatar" style="background:#d1fae5;">&#127978;</div>
+          <div><div class="fixture-name">Kofi Mensah</div><div class="fixture-email">kofi.mensah@togoshop.tg</div></div>
+        </div>
+        <div class="fixture-account">
+          <div class="fixture-avatar" style="background:#d1fae5;">&#127978;</div>
+          <div><div class="fixture-name">Ama Dovie</div><div class="fixture-email">ama.dovie@togoshop.tg</div></div>
+        </div>
+        <div class="fixture-account">
+          <div class="fixture-avatar" style="background:#d1fae5;">&#127978;</div>
+          <div><div class="fixture-name">Yao Koffi</div><div class="fixture-email">yao.koffi@togoshop.tg</div></div>
+        </div>
+        <div class="fixture-account">
+          <div class="fixture-avatar" style="background:#dbeafe;">&#128722;</div>
+          <div><div class="fixture-name">Sophie Bernards</div><div class="fixture-email">sophie.bernards@email.tg</div></div>
+        </div>
+        <div class="fixture-account">
+          <div class="fixture-avatar" style="background:#dbeafe;">&#128722;</div>
+          <div><div class="fixture-name">Kodjo Amegah</div><div class="fixture-email">kodjo.amegah@email.tg</div></div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Volume des donnees</h3>
+      <div class="grid grid-4" style="margin-top:16px;">
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-card-value">12</div>
+          <div class="stat-card-label">Utilisateurs</div>
+        </div>
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-card-value">30</div>
+          <div class="stat-card-label">Produits</div>
+        </div>
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-card-value">20</div>
+          <div class="stat-card-label">Categories</div>
+        </div>
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-card-value">~70</div>
+          <div class="stat-card-label">Avis</div>
+        </div>
+      </div>
+      <div class="grid grid-4" style="margin-top:12px;">
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-card-value">20</div>
+          <div class="stat-card-label">Commandes</div>
+        </div>
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-card-value">~50</div>
+          <div class="stat-card-label">Images</div>
+        </div>
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-card-value">~13</div>
+          <div class="stat-card-label">Adresses</div>
+        </div>
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-card-value">3</div>
+          <div class="stat-card-label">Boutiques</div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Boutiques vendeurs</h3>
+      <div class="grid grid-3" style="margin-top:16px;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:32px;margin-bottom:8px;">&#128187;</div>
+          <div class="card-title">TechLome</div>
+          <div class="card-subtitle">Kofi Mensah &mdash; 10 produits</div>
+          <div style="font-size:12px;color:var(--text-light);margin-top:8px;">Electronique, smartphones, accessoires tech</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:32px;margin-bottom:8px;">&#128087;</div>
+          <div class="card-title">AfroStyle</div>
+          <div class="card-subtitle">Ama Dovie &mdash; 10 produits</div>
+          <div style="font-size:12px;color:var(--text-light);margin-top:8px;">Mode, vetements, accessoires fashion</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:32px;margin-bottom:8px;">&#127968;</div>
+          <div class="card-title">Deco Chez Nous</div>
+          <div class="card-subtitle">Yao Koffi &mdash; 10 produits</div>
+          <div style="font-size:12px;color:var(--text-light);margin-top:8px;">Maison, decoration, meubles</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== DEPLOIEMENT ==================== -->
+    <div class="page-section" id="page-deploiement">
+      <h2 class="section-title">Deploiement</h2>
+      <p class="section-desc">Instructions pour lancer le projet en developpement.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-blue" style="background:#dbeafe;">1</div>
+          <div><div class="card-title">Backend (Docker)</div><div class="card-subtitle">API Symfony + PostgreSQL</div></div>
+        </div>
+        <div class="code-block"><span class="comment"># Build Docker, install deps, generate JWT keys, migrate, load fixtures</span><br><span class="cmd">cd backend</span><br><span class="cmd">make install</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-green" style="background:#d1fae5;">2</div>
+          <div><div class="card-title">Frontend Web</div><div class="card-subtitle">React + Vite</div></div>
+        </div>
+        <div class="code-block"><span class="cmd">cd frontend</span><br><span class="cmd">npm install && npm run dev</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon-purple" style="background:#ede9fe;">3</div>
+          <div><div class="card-title">Mobile</div><div class="card-subtitle">React Native + Expo</div></div>
+        </div>
+        <div class="code-block"><span class="cmd">cd mobile</span><br><span class="cmd">npm install && npx expo start</span></div>
+      </div>
+
+      <h3 class="subsection-title">URLs d'acces</h3>
+      <div class="grid grid-2" style="margin-top:16px;">
+        <div class="stat-card">
+          <div class="stat-card-label">API Backend</div>
+          <div class="stat-card-value" style="font-size:14px;font-family:monospace;">localhost:8888/api</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Documentation API</div>
+          <div class="stat-card-value" style="font-size:14px;font-family:monospace;">localhost:8888/api/docs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Frontend Web</div>
+          <div class="stat-card-value" style="font-size:14px;font-family:monospace;">localhost:5173</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">MailCatcher</div>
+          <div class="stat-card-value" style="font-size:14px;font-family:monospace;">localhost:1080</div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Commandes utiles</h3>
+      <div class="table-wrapper" style="margin-top:16px;">
+        <table>
+          <thead><tr><th>Commande</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>make install</code></td><td>Setup complet (Docker + deps + JWT + migrate + fixtures)</td></tr>
+            <tr><td><code>make up / make down</code></td><td>Demarrer / arreter Docker</td></tr>
+            <tr><td><code>make db-migrate</code></td><td>Executer les migrations</td></tr>
+            <tr><td><code>make db-diff</code></td><td>Generer une migration</td></tr>
+            <tr><td><code>make db-reset</code></td><td>Reset la base + relancer les fixtures</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- .content -->
+</div><!-- .main -->
+
+<script>
+  // Initialize Mermaid
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'neutral',
+    securityLevel: 'loose',
+    flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
+    sequence: { useMaxWidth: true, actorMargin: 60, messageMargin: 40 }
+  });
+
+  // Navigation
+  const links = document.querySelectorAll('.sidebar-link[data-page]');
+  const pages = document.querySelectorAll('.page-section');
+  const topbarTitle = document.getElementById('topbar-title');
+
+  function navigateTo(pageId) {
+    pages.forEach(p => p.classList.remove('active'));
+    links.forEach(l => l.classList.remove('active'));
+
+    const page = document.getElementById('page-' + pageId);
+    const link = document.querySelector(`[data-page="${pageId}"]`);
+
+    if (page) page.classList.add('active');
+    if (link) {
+      link.classList.add('active');
+      topbarTitle.textContent = link.textContent.trim();
+    }
+
+    // Render mermaid diagrams on the newly visible page
+    if (page) {
+      const mermaidDivs = page.querySelectorAll('.mermaid:not([data-processed])');
+      mermaidDivs.forEach((el, i) => {
+        const id = 'mermaid-' + pageId + '-' + i;
+        el.setAttribute('data-processed', 'true');
+        const graphDef = el.textContent;
+        el.textContent = '';
+        mermaid.render(id, graphDef).then(({svg}) => {
+          el.innerHTML = svg;
+        }).catch(err => {
+          console.error('Mermaid error:', err);
+          el.innerHTML = '<p style="color:red;">Erreur de rendu du diagramme</p>';
+        });
+      });
+    }
+
+    // Close mobile sidebar
+    closeSidebar();
+    window.scrollTo(0, 0);
+  }
+
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigateTo(link.dataset.page);
+    });
+  });
+
+  // Mobile sidebar
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('open');
+  }
+
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  }
+
+  // Init: render mermaid on accueil (if any) and default page
+  document.addEventListener('DOMContentLoaded', () => {
+    navigateTo('accueil');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-5%" width="106%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="codeBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#fffbeb"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="400" rx="16" fill="url(#codeBg)"/>
+  <text x="450" y="36" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">Systeme de Code de Livraison Securise</text>
+
+  <!-- Step 1: Generation -->
+  <rect x="30" y="70" width="180" height="130" rx="14" fill="white" stroke="#8b5cf6" stroke-width="2" filter="url(#ds)"/>
+  <rect x="30" y="70" width="180" height="34" rx="14" fill="#ede9fe"/>
+  <rect x="30" y="90" width="180" height="14" fill="#ede9fe"/>
+  <text x="48" y="91" font-size="14">&#9881;</text>
+  <text x="120" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">1. Generation</text>
+  <text x="120" y="122" text-anchor="middle" font-size="11" fill="#334155">Le vendeur marque</text>
+  <text x="120" y="138" text-anchor="middle" font-size="11" fill="#334155">la commande comme</text>
+  <text x="120" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="#8b5cf6">"Expediee"</text>
+  <rect x="55" y="166" width="130" height="24" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="120" y="183" text-anchor="middle" font-size="12" font-weight="800" fill="#b45309">Code: 472831</text>
+
+  <!-- Arrow 1->2 -->
+  <line x1="210" y1="135" x2="250" y2="135" stroke="#475569" stroke-width="2"/>
+  <polygon points="250,135 242,130 242,140" fill="#475569"/>
+  <text x="230" y="126" text-anchor="middle" font-size="8" fill="#64748b">auto</text>
+
+  <!-- Step 2: Visible acheteur -->
+  <rect x="250" y="70" width="180" height="130" rx="14" fill="white" stroke="#3b82f6" stroke-width="2" filter="url(#ds)"/>
+  <rect x="250" y="70" width="180" height="34" rx="14" fill="#dbeafe"/>
+  <rect x="250" y="90" width="180" height="14" fill="#dbeafe"/>
+  <text x="268" y="91" font-size="14">&#128064;</text>
+  <text x="340" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">2. Visible acheteur</text>
+  <text x="340" y="122" text-anchor="middle" font-size="11" fill="#334155">L'acheteur voit</text>
+  <text x="340" y="138" text-anchor="middle" font-size="11" fill="#334155">le code dans son</text>
+  <text x="340" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="#3b82f6">detail commande</text>
+
+  <!-- Phone mockup -->
+  <rect x="300" y="162" width="80" height="34" rx="8" fill="#0f172a"/>
+  <rect x="306" y="166" width="68" height="26" rx="4" fill="#1e293b"/>
+  <text x="340" y="184" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">472831</text>
+
+  <!-- Arrow 2->3 -->
+  <line x1="430" y1="135" x2="470" y2="135" stroke="#475569" stroke-width="2"/>
+  <polygon points="470,135 462,130 462,140" fill="#475569"/>
+  <text x="450" y="126" text-anchor="middle" font-size="8" fill="#64748b">oral/SMS</text>
+
+  <!-- Step 3: Communication -->
+  <rect x="470" y="70" width="180" height="130" rx="14" fill="white" stroke="#10b981" stroke-width="2" filter="url(#ds)"/>
+  <rect x="470" y="70" width="180" height="34" rx="14" fill="#d1fae5"/>
+  <rect x="470" y="90" width="180" height="14" fill="#d1fae5"/>
+  <text x="488" y="91" font-size="14">&#128172;</text>
+  <text x="560" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">3. Communication</text>
+  <text x="560" y="122" text-anchor="middle" font-size="11" fill="#334155">L'acheteur donne</text>
+  <text x="560" y="138" text-anchor="middle" font-size="11" fill="#334155">le code au vendeur</text>
+  <text x="560" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="#10b981">lors de la livraison</text>
+
+  <!-- People exchange -->
+  <circle cx="530" cy="182" r="14" fill="#3b82f6"/>
+  <text x="530" y="187" text-anchor="middle" font-size="12" fill="white">&#128100;</text>
+  <text x="555" y="186" text-anchor="middle" font-size="16">&#10132;</text>
+  <circle cx="585" cy="182" r="14" fill="#10b981"/>
+  <text x="585" y="187" text-anchor="middle" font-size="12" fill="white">&#128100;</text>
+
+  <!-- Arrow 3->4 -->
+  <line x1="650" y1="135" x2="690" y2="135" stroke="#475569" stroke-width="2"/>
+  <polygon points="690,135 682,130 682,140" fill="#475569"/>
+
+  <!-- Step 4: Verification -->
+  <rect x="690" y="70" width="180" height="130" rx="14" fill="white" stroke="#f59e0b" stroke-width="2" filter="url(#ds)"/>
+  <rect x="690" y="70" width="180" height="34" rx="14" fill="#fef3c7"/>
+  <rect x="690" y="90" width="180" height="14" fill="#fef3c7"/>
+  <text x="708" y="91" font-size="14">&#128274;</text>
+  <text x="780" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">4. Verification</text>
+  <text x="780" y="122" text-anchor="middle" font-size="11" fill="#334155">Le vendeur saisit</text>
+  <text x="780" y="138" text-anchor="middle" font-size="11" fill="#334155">le code dans l'app</text>
+  <text x="780" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="#f59e0b">verification serveur</text>
+
+  <!-- Input mockup -->
+  <rect x="720" y="162" width="120" height="34" rx="8" fill="#0f172a"/>
+  <rect x="726" y="168" width="74" height="22" rx="4" fill="#1e293b" stroke="#f59e0b"/>
+  <text x="763" y="184" text-anchor="middle" font-size="12" font-weight="800" fill="#fbbf24">4728__</text>
+  <rect x="806" y="168" width="28" height="22" rx="4" fill="#10b981"/>
+  <text x="820" y="183" text-anchor="middle" font-size="10" font-weight="800" fill="white">OK</text>
+
+  <!-- Bottom: Results -->
+  <rect x="30" y="240" width="840" height="60" rx="14" fill="white" stroke="#e2e8f0" filter="url(#ds)"/>
+
+  <!-- Success result -->
+  <rect x="50" y="252" width="360" height="36" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="66" y="274" font-size="14">&#9989;</text>
+  <text x="90" y="275" font-size="13" font-weight="700" fill="#047857">Code correct</text>
+  <text x="200" y="275" font-size="12" fill="#334155">&#8594; Commande "Livree" + Code efface</text>
+
+  <!-- Failure result -->
+  <rect x="490" y="252" width="360" height="36" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="506" y="274" font-size="14">&#10060;</text>
+  <text x="530" y="275" font-size="13" font-weight="700" fill="#dc2626">Code incorrect</text>
+  <text x="648" y="275" font-size="12" fill="#334155">&#8594; Nouvelle tentative demandee</text>
+
+  <!-- Security badges -->
+  <rect x="30" y="320" width="840" height="65" rx="14" fill="#0f172a"/>
+  <text x="80" y="345" font-size="11" font-weight="700" fill="#f59e0b">&#128274; SECURITE</text>
+
+  <rect x="180" y="332" width="190" height="24" rx="6" fill="#1e293b"/>
+  <text x="275" y="348" text-anchor="middle" font-size="10" fill="#94a3b8">Code non expose dans l'API</text>
+
+  <rect x="390" y="332" width="200" height="24" rx="6" fill="#1e293b"/>
+  <text x="490" y="348" text-anchor="middle" font-size="10" fill="#94a3b8">Visible uniquement par l'acheteur</text>
+
+  <rect x="610" y="332" width="200" height="24" rx="6" fill="#1e293b"/>
+  <text x="710" y="348" text-anchor="middle" font-size="10" fill="#94a3b8">Supprime apres verification</text>
+
+  <text x="450" y="376" text-anchor="middle" font-size="9" fill="#64748b">Le code de livraison garantit que seul le veritable destinataire peut confirmer la reception du colis</text>
+</svg>
