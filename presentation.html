@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TogoMarket - Presentation Investisseurs</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --dark: #0f172a;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--bg);
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .nav-logo-text {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-light);
+      border-radius: 8px;
+      transition: all .2s;
+    }
+
+    .nav-links a:hover { background: #f1f5f9; color: var(--text); }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 40px 60px;
+      background: linear-gradient(160deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,.15), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -200px;
+      left: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(245,158,11,.1), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(8px);
+      padding: 8px 20px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span { color: #60a5fa; }
+
+    .hero p {
+      font-size: 20px;
+      opacity: .75;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 48px;
+    }
+
+    .hero-stat { text-align: center; }
+    .hero-stat-value { font-size: 36px; font-weight: 900; }
+    .hero-stat-label { font-size: 13px; opacity: .5; margin-top: 4px; }
+
+    .hero-stat-value.gold { color: #fbbf24; }
+
+    /* ===== SECTION ===== */
+    section {
+      padding: 80px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    section:nth-child(even) { background: var(--bg-alt); max-width: 100%; }
+    section:nth-child(even) > .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .section-desc {
+      font-size: 17px;
+      color: var(--text-light);
+      max-width: 600px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    /* ===== DIAGRAM ===== */
+    .diagram-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,.04);
+    }
+
+    .diagram-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .diagram-card .desc {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .diagram-card img, .diagram-card object {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    /* ===== KEY FEATURES ===== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all .2s;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 8px 25px -5px rgba(0,0,0,.08);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* ===== VALUE PROPS ===== */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .value-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,.03);
+    }
+
+    .value-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--primary);
+    }
+
+    .value-label {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    /* ===== TWO COLS ===== */
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .two-cols.reverse { direction: rtl; }
+    .two-cols.reverse > * { direction: ltr; }
+
+    /* ===== MARKET FIT ===== */
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .market-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--border);
+    }
+
+    .market-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .market-card p {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .market-card .emoji {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    /* ===== TECH STACK ===== */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .stack-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      transition: all .2s;
+    }
+
+    .stack-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,.06); }
+
+    .stack-item .icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .stack-item .name {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .stack-item .detail {
+      font-size: 10px;
+      color: var(--text-light);
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #0f172a, #1e3a5f);
+      color: white;
+      text-align: center;
+      padding: 80px 40px;
+      border-radius: 0;
+      max-width: 100% !important;
+    }
+
+    .cta-section h2 {
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      font-size: 17px;
+      opacity: .7;
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-accounts {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-account {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+      padding: 16px 24px;
+      text-align: left;
+      min-width: 220px;
+    }
+
+    .cta-account .role {
+      font-size: 11px;
+      font-weight: 700;
+      opacity: .5;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-account .email {
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 4px;
+      font-family: monospace;
+    }
+
+    .cta-account .pass {
+      font-size: 11px;
+      opacity: .4;
+      margin-top: 2px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-light);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ===== RESPONSIVE GRIDS (classes) ===== */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .flex-row { display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; }
+    .profile-card { width: 300px; flex-shrink: 0; }
+    .profile-text { flex: 1; min-width: 280px; }
+    .roadmap-row { display: flex; gap: 0; position: relative; }
+    .roadmap-line { position: absolute; top: 28px; left: 40px; right: 40px; height: 3px; border-radius: 2px; }
+    .roadmap-step { flex: 1; text-align: center; position: relative; z-index: 1; }
+    .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .partner-cards { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .needs-full { grid-column: 1 / -1; }
+    .needs-inner { display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; }
+    .needs-left { flex: 1; min-width: 280px; }
+    .needs-right { flex: 1; min-width: 280px; }
+    .tmoney-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .section-pad { padding: 80px 40px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .stack-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero { padding: 80px 20px 48px; min-height: auto; }
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 15px; }
+      .hero-stats { gap: 16px; flex-wrap: wrap; }
+      .hero-stats .hero-stat { min-width: 60px; }
+      .hero-stat-value { font-size: 22px; }
+      .hero-stat-label { font-size: 11px; }
+      section { padding: 40px 16px; }
+      .section-pad { padding: 48px 16px !important; }
+      .section-title { font-size: 22px; }
+      .section-desc { font-size: 14px; }
+      .features-grid, .market-grid { grid-template-columns: 1fr; }
+      .value-grid { grid-template-columns: repeat(2, 1fr); }
+      .stack-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-cols { grid-template-columns: 1fr; }
+      .diagram-card { padding: 12px; overflow-x: auto; }
+      .diagram-card h3 { font-size: 15px; }
+      .diagram-card img { min-width: 500px; }
+      .feature-card { padding: 20px; }
+
+      /* Grids */
+      .g2, .g3, .g4 { grid-template-columns: 1fr !important; }
+      .partner-grid { grid-template-columns: 1fr; }
+      .tmoney-grid { grid-template-columns: 1fr; }
+
+      /* Flex layouts */
+      .flex-row { flex-direction: column; gap: 24px; }
+      .profile-card { width: 100%; }
+      .roadmap-row { flex-direction: column; gap: 32px; }
+      .roadmap-line { display: none; }
+      .partner-cards { flex-direction: column; align-items: stretch; }
+      .needs-inner { flex-direction: column; }
+
+      /* Partenariat section */
+      .needs-full { grid-column: auto; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 22px; }
+      .hero-stat-value { font-size: 18px; }
+      .value-grid { grid-template-columns: 1fr; }
+      .stack-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 20px; }
+      .feature-card { padding: 16px; }
+      .market-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">&#128722;</div>
+    <span class="nav-logo-text">TogoMarket</span>
+  </a>
+  <div class="nav-links">
+    <a href="#vision">Vision</a>
+    <a href="#features">Fonctionnalites</a>
+    <a href="#flows">Processus</a>
+    <a href="#platforms">Plateformes</a>
+    <a href="#perspectives">Besoins & Perspectives</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">&#128640; Presentation investisseurs &mdash; Mars 2026</div>
+    <h1>TogoMarket<br><span>La marketplace e-commerce du Togo</span></h1>
+    <p>Une plateforme mobile-first et web pensee pour les entrepreneurs togolais. Paiement securise, livraison tracee, multi-vendeurs. Un projet pret a etre lance, avec le bon partenaire.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">3</div>
+        <div class="hero-stat-label">Applications</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">15+</div>
+        <div class="hero-stat-label">Ecrans</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value gold">FCFA</div>
+        <div class="hero-stat-label">Devise XOF</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value" style="color:#10b981;">100%</div>
+        <div class="hero-stat-label">Fonctionnel</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOUNDER -->
+<section style="background:linear-gradient(135deg,#fffbeb,#fef3c7);max-width:100%;border-bottom:2px solid #fde68a;">
+  <div class="section-inner" style="max-width:900px;margin:0 auto;">
+    <div class="flex-row">
+      <div class="profile-text">
+        <div style="font-size:13px;font-weight:700;color:#b45309;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Le porteur du projet</div>
+        <h2 style="font-size:28px;font-weight:900;color:#0f172a;line-height:1.2;margin-bottom:16px;">A propos du fondateur</h2>
+        <p style="font-size:15px;color:#334155;line-height:1.7;margin-bottom:12px;">
+          <strong>TogoMarket</strong> est un projet de marketplace e-commerce entierement concu et developpe pour le marche togolais. La plateforme est <strong>fonctionnelle</strong> &mdash; application mobile, site web et API backend sont prets.
+        </p>
+        <p style="font-size:15px;color:#334155;line-height:1.7;margin-bottom:12px;">
+          Ce projet est ne de la volonte de donner aux vendeurs togolais un outil professionnel pour vendre en ligne, gerer leur stock, et atteindre de nouveaux clients &mdash; au-dela des reseaux sociaux.
+        </p>
+        <p style="font-size:15px;color:#334155;line-height:1.7;">
+          Nous recherchons un <strong>partenaire strategique</strong> pour accompagner le lancement commercial : financement, reseau d'entrepreneurs, et logistique locale. En echange, une <strong>co-propriete du projet</strong> et un role de premier plan dans la premiere marketplace locale du Togo.
+        </p>
+      </div>
+      <div class="profile-card">
+        <div style="background:white;border-radius:20px;padding:0;box-shadow:0 8px 30px rgba(0,0,0,.1);border:1px solid #fde68a;overflow:hidden;">
+          <!-- Header gradient -->
+          <div style="background:linear-gradient(135deg,#1d4ed8,#3b82f6,#60a5fa);padding:28px 24px 40px;text-align:center;position:relative;">
+            <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><circle cx=%2240%22 cy=%2240%22 r=%2230%22 fill=%22none%22 stroke=%22white%22 stroke-opacity=%220.06%22 stroke-width=%221%22/></svg>') repeat;opacity:.5;"></div>
+            <div style="position:relative;z-index:1;">
+              <div style="width:80px;height:80px;border-radius:50%;background:white;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#1d4ed8;box-shadow:0 4px 12px rgba(0,0,0,.15);border:3px solid rgba(255,255,255,.8);">LS</div>
+              <div style="font-size:18px;font-weight:800;color:white;letter-spacing:-0.3px;">Lincoln Junior Sagbo</div>
+              <div style="font-size:12px;color:rgba(255,255,255,.7);margin-top:4px;">Porteur du projet TogoMarket</div>
+            </div>
+          </div>
+          <!-- Info cards -->
+          <div style="padding:20px;margin-top:-16px;position:relative;z-index:2;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">&#127891;</div>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:#0f172a;">Ingenieur Dev Logiciel & Big Data</div>
+                <div style="font-size:11px;color:#64748b;">Bac+5 specialise</div>
+              </div>
+            </div>
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">&#127979;</div>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:#0f172a;">Universite de Toulon</div>
+                <div style="font-size:11px;color:#64748b;">France</div>
+              </div>
+            </div>
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">&#128197;</div>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:#0f172a;">Diplome : Octobre 2026</div>
+                <div style="font-size:11px;color:#64748b;">En cours de finalisation</div>
+              </div>
+            </div>
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">&#127481;&#127468;</div>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:#0f172a;">Originaire du Togo</div>
+                <div style="font-size:11px;color:#64748b;">Connaissance du marche local</div>
+              </div>
+            </div>
+            <!-- LinkedIn button -->
+            <a href="https://www.linkedin.com/in/lincoln2105/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;background:#0a66c2;color:white;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s;box-shadow:0 2px 8px rgba(10,102,194,.3);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              Voir mon profil LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION / MARKET FIT -->
+<section id="vision">
+  <div class="section-label">&#127757; Vision</div>
+  <h2 class="section-title">Pourquoi TogoMarket ?</h2>
+  <p class="section-desc">Le commerce en ligne au Togo manque d'une plateforme marketplace locale. Les ventes se font principalement via WhatsApp et Facebook, sans outil dedie.</p>
+
+  <div class="market-grid">
+    <div class="market-card">
+      <div class="emoji">&#128681;</div>
+      <h4>Probleme</h4>
+      <p>Pas de marketplace locale au Togo. Les vendeurs utilisent les reseaux sociaux, sans gestion de stock, paiement securise, ni suivi de commande.</p>
+    </div>
+    <div class="market-card">
+      <div class="emoji">&#128161;</div>
+      <h4>Solution</h4>
+      <p>TogoMarket : plateforme mobile-first avec paiement Stripe, multi-vendeurs, gestion de stock, et systeme de livraison securise par code 6 chiffres.</p>
+    </div>
+    <div class="market-card">
+      <div class="emoji">&#127919;</div>
+      <h4>Marche cible</h4>
+      <p>Vendeurs togolais (electronique, mode, maison) et acheteurs urbains. Extension prevue en Afrique de l'Ouest (FCFA zone UEMOA).</p>
+    </div>
+  </div>
+
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="value-number">8M+</div>
+      <div class="value-label">Population Togo</div>
+    </div>
+    <div class="value-card">
+      <div class="value-number">63%</div>
+      <div class="value-label">Penetration mobile</div>
+    </div>
+    <div class="value-card">
+      <div class="value-number">+25%</div>
+      <div class="value-label">Croissance e-commerce/an</div>
+    </div>
+    <div class="value-card">
+      <div class="value-number">0</div>
+      <div class="value-label">Marketplace locale majeure</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture" style="background:var(--bg-alt);max-width:100%;">
+  <div class="section-inner">
+    <div class="section-label">&#9881; Architecture</div>
+    <h2 class="section-title">Architecture du systeme</h2>
+    <p class="section-desc">3 applications connectees a une API robuste, avec paiement securise et notifications.</p>
+
+    <div class="diagram-card">
+      <h3>Vue d'ensemble</h3>
+      <p class="desc">Application mobile (React Native), application web (React), API backend (Symfony/API Platform), base PostgreSQL, Stripe et notifications email.</p>
+      <img src="images/architecture.svg" alt="Architecture systeme TogoMarket">
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-label">&#9889; Fonctionnalites</div>
+  <h2 class="section-title">Fonctionnalites cles</h2>
+  <p class="section-desc">Les fonctionnalites qui differencient TogoMarket des solutions existantes.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#dbeafe;">&#128722;</div>
+      <h4>Panier multi-vendeurs</h4>
+      <p>L'acheteur remplit 1 seul panier avec des produits de differents vendeurs. Au checkout, le systeme cree automatiquement 1 commande par vendeur avec 1 seul paiement.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#fef3c7;">&#128274;</div>
+      <h4>Code de livraison securise</h4>
+      <p>Un code a 6 chiffres est genere automatiquement a l'expedition. L'acheteur le communique au livreur pour confirmer la reception. Anti-fraude integre.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#d1fae5;">&#128176;</div>
+      <h4>Paiements multiples</h4>
+      <p>Stripe (cartes bancaires) + TMoney (Togocom) + Flooz (Moov Africa). Les paiements Mobile Money couvrent 60%+ de la population togolaise. Confirmation automatique par webhook/callback.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#ede9fe;">&#127912;</div>
+      <h4>Variantes produit</h4>
+      <p>Chaque produit peut avoir des couleurs (palette visuelle) et des tailles (vetements XS-XXL, chaussures 36-45). Selection obligatoire avant ajout au panier.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#fee2e2;">&#128205;</div>
+      <h4>Geolocalisation GPS</h4>
+      <p>Detection automatique de la position de l'acheteur avec remplissage auto des champs d'adresse via reverse geocoding. Adresses multiples.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#cffafe;">&#128241;</div>
+      <h4>Mobile-first</h4>
+      <p>Application React Native / Expo deployable sur Android et iOS. Theme clair/sombre, animations fluides, pull-to-refresh, design moderne.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section style="background:var(--bg-alt);max-width:100%;">
+  <div class="section-inner">
+    <div class="section-label">&#128101; Acteurs</div>
+    <h2 class="section-title">4 roles, 1 hierarchie</h2>
+    <p class="section-desc">Un systeme de roles avec heritage : l'admin peut tout faire, le vendeur peut aussi acheter.</p>
+
+    <div class="diagram-card">
+      <h3>Hierarchie des roles et permissions</h3>
+      <p class="desc">ROLE_ADMIN herite de ROLE_SELLER qui herite de ROLE_BUYER. Chaque niveau ajoute des permissions specifiques.</p>
+      <div style="max-width:600px;margin:0 auto;">
+        <img src="images/role-hierarchy.svg" alt="Hierarchie des roles TogoMarket">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="use-cases">
+  <div class="section-label">&#128202; Cas d'utilisation</div>
+  <h2 class="section-title">Diagramme des cas d'utilisation</h2>
+  <p class="section-desc">Vue d'ensemble de ce que chaque acteur peut faire dans le systeme.</p>
+
+  <div class="diagram-card">
+    <h3>Cas d'utilisation globaux</h3>
+    <p class="desc">4 acteurs (visiteur, acheteur, vendeur, admin) avec leurs cas d'utilisation respectifs. Les cas surligne sont les fonctionnalites differenciantes.</p>
+    <img src="images/use-cases-global.svg" alt="Diagramme cas d'utilisation TogoMarket">
+  </div>
+</section>
+
+<!-- ORDER FLOW -->
+<section id="flows" style="background:var(--bg-alt);max-width:100%;">
+  <div class="section-inner">
+    <div class="section-label">&#128260; Processus</div>
+    <h2 class="section-title">Flux de commande</h2>
+    <p class="section-desc">Du panier a la livraison confirmee : 4 phases, 100% tracable.</p>
+
+    <div class="diagram-card">
+      <h3>Processus complet de commande</h3>
+      <p class="desc">Phase 1 : Achat (panier + Stripe) &rarr; Phase 2 : Paiement (webhook) &rarr; Phase 3 : Preparation (vendeur) &rarr; Phase 4 : Livraison (code securise).</p>
+      <img src="images/order-flow.svg" alt="Flux de commande TogoMarket">
+    </div>
+
+    <div class="diagram-card">
+      <h3>Commande multi-vendeurs</h3>
+      <p class="desc">Sophie achete un iPhone chez Kofi et une robe chez Ama. 1 seul paiement, 2 commandes independantes, 2 livraisons avec codes differents.</p>
+      <img src="images/multi-vendor.svg" alt="Commande multi-vendeurs TogoMarket">
+    </div>
+
+    <div class="diagram-card">
+      <h3>Cycle de vie d'une commande</h3>
+      <p class="desc">Les 6 etats possibles d'une commande et les transitions entre chaque statut.</p>
+      <img src="images/order-states.svg" alt="Etats commande TogoMarket">
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY CODE -->
+<section>
+  <div class="section-label">&#128274; Innovation</div>
+  <h2 class="section-title">Code de livraison securise</h2>
+  <p class="section-desc">Notre systeme anti-fraude unique : un code a 6 chiffres garantit que seul le veritable destinataire confirme la reception.</p>
+
+  <div class="diagram-card">
+    <h3>Processus en 4 etapes</h3>
+    <p class="desc">Generation automatique, visible uniquement par l'acheteur, communication orale au livreur, verification serveur avec suppression apres validation.</p>
+    <img src="images/delivery-code.svg" alt="Code de livraison securise TogoMarket">
+  </div>
+</section>
+
+<!-- PERSPECTIVES -->
+<section id="perspectives" style="background:var(--bg-alt);max-width:100%;">
+  <div class="section-inner">
+    <div class="section-label">&#128640; Perspectives</div>
+    <h2 class="section-title">Prochaines etapes & besoins</h2>
+    <p class="section-desc">La plateforme est fonctionnelle. Voici ce dont nous avons besoin pour passer a l'echelle et lancer commercialement.</p>
+
+    <!-- NEEDS GRID -->
+    <div class="g2" style="margin-bottom:40px;">
+
+      <div class="feature-card" style="border-left:4px solid #f59e0b;">
+        <div class="feature-icon" style="background:#fef3c7;">&#128176;</div>
+        <h4>Levee de fonds</h4>
+        <p>Financement pour couvrir les couts d'infrastructure (serveurs, nom de domaine, certificat SSL), les frais Stripe, le deploiement sur les stores (Google Play, App Store), et les 6 premiers mois d'exploitation.</p>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="background:#fef3c7;color:#b45309;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Serveurs cloud</span>
+          <span style="background:#fef3c7;color:#b45309;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Frais Stripe</span>
+          <span style="background:#fef3c7;color:#b45309;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">App Store / Play Store</span>
+          <span style="background:#fef3c7;color:#b45309;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Domaine & SSL</span>
+        </div>
+      </div>
+
+      <div class="feature-card" style="border-left:4px solid #3b82f6;">
+        <div class="feature-icon" style="background:#dbeafe;">&#128226;</div>
+        <h4>Marketing & Publicite</h4>
+        <p>Budget publicitaire pour faire connaitre la plateforme : campagnes Facebook/Instagram ciblees Togo, partenariats avec des influenceurs locaux, presence sur les reseaux sociaux, flyers et affiches dans les marches.</p>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="background:#dbeafe;color:#1d4ed8;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Facebook Ads</span>
+          <span style="background:#dbeafe;color:#1d4ed8;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Influenceurs</span>
+          <span style="background:#dbeafe;color:#1d4ed8;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Flyers marches</span>
+          <span style="background:#dbeafe;color:#1d4ed8;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">WhatsApp Business</span>
+        </div>
+      </div>
+
+      <div class="feature-card" style="border-left:4px solid #10b981;">
+        <div class="feature-icon" style="background:#d1fae5;">&#128666;</div>
+        <h4>Partenariat livraison</h4>
+        <p>Nouer un partenariat avec un service de livraison local ou creer une flotte de livreurs. Integration du suivi en temps reel, zones de couverture Lome puis extension aux villes secondaires (Kara, Sokode, Atakpame).</p>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="background:#d1fae5;color:#047857;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Livreurs partenaires</span>
+          <span style="background:#d1fae5;color:#047857;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Suivi GPS temps reel</span>
+          <span style="background:#d1fae5;color:#047857;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Couverture nationale</span>
+        </div>
+      </div>
+
+      <div class="feature-card" style="border-left:4px solid #8b5cf6;">
+        <div class="feature-icon" style="background:#ede9fe;">&#127978;</div>
+        <h4>Local & Point de retrait</h4>
+        <p>Un local physique a Lome servant de point de retrait pour les acheteurs, d'entrepot temporaire pour les vendeurs, et de siege pour l'equipe. Vitrine physique pour gagner en credibilite.</p>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="background:#ede9fe;color:#6d28d9;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Point de retrait</span>
+          <span style="background:#ede9fe;color:#6d28d9;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Entrepot vendeurs</span>
+          <span style="background:#ede9fe;color:#6d28d9;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Bureau equipe</span>
+        </div>
+      </div>
+
+      <div class="feature-card needs-full" style="border-left:4px solid #ef4444;">
+        <div class="needs-inner">
+          <div class="needs-left">
+            <div class="feature-icon" style="background:#fee2e2;">&#128241;</div>
+            <h4>Paiements locaux : TMoney & Flooz</h4>
+            <p>Au Togo, la majorite de la population utilise le Mobile Money au quotidien. Integrer TMoney (Togocom) et Flooz (Moov Africa) est indispensable pour toucher le plus grand nombre d'acheteurs, y compris ceux qui n'ont pas de carte bancaire.</p>
+          </div>
+          <div class="needs-right">
+            <div class="tmoney-grid">
+              <div style="background:#fff;border:2px solid #ef4444;border-radius:12px;padding:16px;text-align:center;">
+                <div style="font-size:24px;margin-bottom:6px;">&#127909;</div>
+                <div style="font-size:14px;font-weight:800;color:#dc2626;">TMoney</div>
+                <div style="font-size:11px;color:#64748b;margin-top:4px;">Togocom (ex-Togo Cellulaire)</div>
+                <div style="font-size:10px;color:#94a3b8;margin-top:2px;">USSD + API marchande</div>
+              </div>
+              <div style="background:#fff;border:2px solid #f59e0b;border-radius:12px;padding:16px;text-align:center;">
+                <div style="font-size:24px;margin-bottom:6px;">&#128310;</div>
+                <div style="font-size:14px;font-weight:800;color:#b45309;">Flooz</div>
+                <div style="font-size:11px;color:#64748b;margin-top:4px;">Moov Africa</div>
+                <div style="font-size:10px;color:#94a3b8;margin-top:2px;">USSD + API marchande</div>
+              </div>
+            </div>
+            <div style="margin-top:12px;padding:12px;background:#fef2f2;border-radius:8px;border:1px solid #fecaca;">
+              <div style="font-size:11px;font-weight:700;color:#dc2626;margin-bottom:4px;">POURQUOI C'EST PRIORITAIRE</div>
+              <div style="font-size:12px;color:#334155;line-height:1.5;">Seulement ~5% des Togolais ont une carte bancaire, mais plus de 60% utilisent le Mobile Money. Sans TMoney/Flooz, on exclut la grande majorite des acheteurs potentiels.</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="background:#fee2e2;color:#dc2626;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">TMoney (Togocom)</span>
+          <span style="background:#fee2e2;color:#dc2626;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Flooz (Moov Africa)</span>
+          <span style="background:#fee2e2;color:#dc2626;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">API marchande</span>
+          <span style="background:#fee2e2;color:#dc2626;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Paiement par USSD</span>
+          <span style="background:#fee2e2;color:#dc2626;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Confirmation par callback</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="diagram-card">
+      <h3>Feuille de route</h3>
+      <p class="desc">Les grandes etapes pour passer du prototype au lancement commercial.</p>
+
+      <div class="roadmap-row" style="margin-top:20px;">
+        <div class="roadmap-line" style="background:linear-gradient(90deg,#10b981,#3b82f6,#f59e0b,#8b5cf6);"></div>
+
+        <div class="roadmap-step">
+          <div style="width:56px;height:56px;border-radius:50%;background:#d1fae5;border:3px solid #10b981;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:22px;">&#9989;</div>
+          <div style="font-size:12px;font-weight:800;color:#047857;margin-bottom:4px;">FAIT</div>
+          <div style="font-size:13px;font-weight:700;color:#0f172a;">Prototype</div>
+          <div style="font-size:11px;color:#64748b;margin-top:4px;line-height:1.4;">App mobile + web<br>API backend<br>Paiement Stripe<br>Code livraison</div>
+        </div>
+
+        <div class="roadmap-step">
+          <div style="width:56px;height:56px;border-radius:50%;background:#dbeafe;border:3px solid #3b82f6;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:22px;">&#128179;</div>
+          <div style="font-size:12px;font-weight:800;color:#1d4ed8;margin-bottom:4px;">PHASE 1</div>
+          <div style="font-size:13px;font-weight:700;color:#0f172a;">Financement</div>
+          <div style="font-size:11px;color:#64748b;margin-top:4px;line-height:1.4;">Levee de fonds<br>Deploiement serveurs<br>Publication stores<br>Nom de domaine</div>
+        </div>
+
+        <div class="roadmap-step">
+          <div style="width:56px;height:56px;border-radius:50%;background:#fef3c7;border:3px solid #f59e0b;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:22px;">&#128226;</div>
+          <div style="font-size:12px;font-weight:800;color:#b45309;margin-bottom:4px;">PHASE 2</div>
+          <div style="font-size:13px;font-weight:700;color:#0f172a;">Lancement Lome</div>
+          <div style="font-size:11px;color:#64748b;margin-top:4px;line-height:1.4;">Campagne marketing<br>50 premiers vendeurs<br>Local / point retrait<br>TMoney & Flooz<br>Partenaire livraison</div>
+        </div>
+
+        <div class="roadmap-step">
+          <div style="width:56px;height:56px;border-radius:50%;background:#ede9fe;border:3px solid #8b5cf6;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:22px;">&#127757;</div>
+          <div style="font-size:12px;font-weight:800;color:#6d28d9;margin-bottom:4px;">PHASE 3</div>
+          <div style="font-size:13px;font-weight:700;color:#0f172a;">Expansion</div>
+          <div style="font-size:11px;color:#64748b;margin-top:4px;line-height:1.4;">Villes secondaires<br>Flotte de livreurs<br>Points de retrait multiples<br>Afrique de l'Ouest (UEMOA)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONETIZATION -->
+    <div class="diagram-card" style="margin-top:24px;">
+      <h3>Modele de revenus</h3>
+      <p class="desc">Comment TogoMarket genere des revenus de maniere durable.</p>
+
+      <div class="g4" style="margin-top:16px;">
+        <div style="text-align:center;padding:20px;background:#f0fdf4;border-radius:12px;border:1px solid #bbf7d0;">
+          <div style="font-size:28px;font-weight:900;color:#047857;">5-10%</div>
+          <div style="font-size:12px;font-weight:700;color:#047857;margin-top:4px;">Commission / vente</div>
+          <div style="font-size:11px;color:#64748b;margin-top:6px;">Prelevee sur chaque transaction vendeur</div>
+        </div>
+        <div style="text-align:center;padding:20px;background:#eff6ff;border-radius:12px;border:1px solid #bfdbfe;">
+          <div style="font-size:28px;font-weight:900;color:#1d4ed8;">Variable</div>
+          <div style="font-size:12px;font-weight:700;color:#1d4ed8;margin-top:4px;">Frais de livraison</div>
+          <div style="font-size:11px;color:#64748b;margin-top:6px;">A definir selon zone et partenaire logistique</div>
+        </div>
+        <div style="text-align:center;padding:20px;background:#fefce8;border-radius:12px;border:1px solid #fde68a;">
+          <div style="font-size:28px;font-weight:900;color:#b45309;">Premium</div>
+          <div style="font-size:12px;font-weight:700;color:#b45309;margin-top:4px;">Abonnement vendeur</div>
+          <div style="font-size:11px;color:#64748b;margin-top:6px;">Mise en avant, stats avancees, 0% commission</div>
+        </div>
+        <div style="text-align:center;padding:20px;background:#faf5ff;border-radius:12px;border:1px solid #e9d5ff;">
+          <div style="font-size:28px;font-weight:900;color:#7c3aed;">Pub</div>
+          <div style="font-size:12px;font-weight:700;color:#7c3aed;margin-top:4px;">Publicite in-app</div>
+          <div style="font-size:11px;color:#64748b;margin-top:6px;">Produits sponsorises, bannieres vendeurs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <div class="section-label">&#128736; Technologies</div>
+  <h2 class="section-title">Stack technologique</h2>
+  <p class="section-desc">Technologies modernes, robustes et eprouvees pour une scalabilite optimale.</p>
+
+  <div class="stack-grid">
+    <div class="stack-item">
+      <div class="icon">&#128241;</div>
+      <div class="name">React Native</div>
+      <div class="detail">Expo 54 / RN 0.77</div>
+    </div>
+    <div class="stack-item">
+      <div class="icon">&#9881;</div>
+      <div class="name">Symfony 7</div>
+      <div class="detail">PHP 8.3</div>
+    </div>
+    <div class="stack-item">
+      <div class="icon">&#128279;</div>
+      <div class="name">API Platform 4</div>
+      <div class="detail">JSON-LD / REST</div>
+    </div>
+    <div class="stack-item">
+      <div class="icon">&#128450;</div>
+      <div class="name">PostgreSQL 16</div>
+      <div class="detail">UUID / Doctrine</div>
+    </div>
+    <div class="stack-item">
+      <div class="icon">&#128179;</div>
+      <div class="name">Stripe</div>
+      <div class="detail">Checkout Sessions</div>
+    </div>
+    <div class="stack-item">
+      <div class="icon">&#128421;</div>
+      <div class="name">React 18</div>
+      <div class="detail">Vite / Tailwind</div>
+    </div>
+    <div class="stack-item">
+      <div class="icon">&#128218;</div>
+      <div class="name">Zustand</div>
+      <div class="detail">State management</div>
+    </div>
+    <div class="stack-item">
+      <div class="icon">&#128274;</div>
+      <div class="name">JWT Auth</div>
+      <div class="detail">Lexik + Refresh</div>
+    </div>
+    <div class="stack-item">
+      <div class="icon">&#128230;</div>
+      <div class="name">Docker</div>
+      <div class="detail">Multi-container</div>
+    </div>
+    <div class="stack-item">
+      <div class="icon">&#128640;</div>
+      <div class="name">GitHub Actions</div>
+      <div class="detail">CI/CD</div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section id="platforms" style="background:var(--bg-alt);max-width:100%;">
+  <div class="section-inner">
+    <div class="section-label">&#127760; Plateformes</div>
+    <h2 class="section-title">3 interfaces, 1 experience unifiee</h2>
+    <p class="section-desc">TogoMarket est accessible sur mobile (Android/iOS), sur le web, et via une API ouverte. Toutes les plateformes partagent le meme backend et les memes donnees en temps reel.</p>
+
+    <div class="features-grid">
+      <div class="feature-card" style="border-color:#3b82f6;border-width:2px;">
+        <div class="feature-icon" style="background:#dbeafe;">&#128241;</div>
+        <h4>Application Mobile</h4>
+        <p>React Native / Expo, deployable sur Android et iOS. Theme clair/sombre, animations fluides, geolocalisation, camera pour upload de photos produits.</p>
+        <div style="margin-top:16px;padding:12px;background:#f8fafc;border-radius:10px;">
+          <div style="font-size:11px;color:#64748b;font-weight:600;margin-bottom:6px;">ECRANS PRINCIPAUX</div>
+          <div style="font-size:12px;color:#334155;line-height:1.8;">
+            Accueil &bull; Catalogue &bull; Detail produit &bull; Panier &bull; Checkout &bull; Commandes &bull; Profil &bull; Dashboard vendeur &bull; Gestion produits &bull; Boutique vendeur
+          </div>
+        </div>
+      </div>
+      <div class="feature-card" style="border-color:#8b5cf6;border-width:2px;">
+        <div class="feature-icon" style="background:#ede9fe;">&#128421;</div>
+        <h4>Application Web</h4>
+        <p>React 18 + TypeScript + Vite + Tailwind CSS v4. Interface responsive pour la gestion avancee, l'administration et la navigation depuis un ordinateur.</p>
+        <div style="margin-top:16px;padding:12px;background:#f8fafc;border-radius:10px;">
+          <div style="font-size:11px;color:#64748b;font-weight:600;margin-bottom:6px;">MODULES WEB</div>
+          <div style="font-size:12px;color:#334155;line-height:1.8;">
+            Catalogue public &bull; Authentification &bull; Espace acheteur &bull; Espace vendeur &bull; Dashboard admin &bull; Gestion categories &bull; Validation vendeurs
+          </div>
+        </div>
+      </div>
+      <div class="feature-card" style="border-color:#10b981;border-width:2px;">
+        <div class="feature-icon" style="background:#d1fae5;">&#9881;</div>
+        <h4>API Backend</h4>
+        <p>Symfony 7 + API Platform 4. API RESTful JSON-LD avec documentation Swagger auto-generee. Authentification JWT, webhooks Stripe, filtrage avance.</p>
+        <div style="margin-top:16px;padding:12px;background:#f8fafc;border-radius:10px;">
+          <div style="font-size:11px;color:#64748b;font-weight:600;margin-bottom:6px;">ENDPOINTS CLES</div>
+          <div style="font-size:12px;color:#334155;line-height:1.8;">
+            CRUD auto (API Platform) &bull; Auth JWT &bull; Checkout Stripe &bull; Webhook paiement &bull; Upload images &bull; Code livraison &bull; Dashboard admin
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="g3" style="margin-top:32px;">
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;">
+        <div style="font-size:28px;font-weight:900;color:#3b82f6;">15+</div>
+        <div style="font-size:13px;color:var(--text-light);">Ecrans mobile</div>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;">
+        <div style="font-size:28px;font-weight:900;color:#8b5cf6;">10+</div>
+        <div style="font-size:13px;color:var(--text-light);">Pages web</div>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;">
+        <div style="font-size:28px;font-weight:900;color:#10b981;">11</div>
+        <div style="font-size:13px;color:var(--text-light);">Endpoints custom API</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-pad" style="background:linear-gradient(160deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);color:white;max-width:100%;">
+  <div style="max-width:900px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;color:#fbbf24;margin-bottom:16px;">&#129309; Opportunite</div>
+      <h2 style="font-size:36px;font-weight:900;letter-spacing:-0.5px;">Investir dans TogoMarket</h2>
+      <p style="font-size:17px;opacity:.65;max-width:600px;margin:12px auto 0;">Un projet technologique solide a la recherche d'un partenaire strategique pour passer du prototype au lancement commercial.</p>
+    </div>
+
+    <div class="partner-grid" style="margin-bottom:40px;">
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px;">
+        <div style="font-size:28px;margin-bottom:12px;">&#128187;</div>
+        <h4 style="font-size:16px;font-weight:700;margin-bottom:8px;">Ce que nous apportons</h4>
+        <div style="font-size:14px;opacity:.8;line-height:1.8;">
+          &#10003; La plateforme complete, fonctionnelle et testee<br>
+          &#10003; Expertise technique full-stack (mobile + web + API)<br>
+          &#10003; Maintenance, evolutions et support technique<br>
+          &#10003; Integration des paiements locaux (TMoney, Flooz)<br>
+          &#10003; Vision produit et feuille de route
+        </div>
+      </div>
+      <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:16px;padding:28px;">
+        <div style="font-size:28px;margin-bottom:12px;">&#127942;</div>
+        <h4 style="font-size:16px;font-weight:700;margin-bottom:8px;">Ce que nous recherchons</h4>
+        <div style="font-size:14px;opacity:.8;line-height:1.8;">
+          &#10003; Financement initial (infrastructure + lancement)<br>
+          &#10003; Reseau d'entrepreneurs et de vendeurs<br>
+          &#10003; Soutien logistique (local, point de retrait)<br>
+          &#10003; Credibilite et notoriete sur le marche togolais<br>
+          &#10003; Vision strategique et mentorat business
+        </div>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px;text-align:center;">
+      <h3 style="font-size:22px;font-weight:800;margin-bottom:16px;color:#fbbf24;">Interessé ? Contactez-nous</h3>
+      <p style="font-size:15px;opacity:.75;max-width:700px;margin:0 auto 24px;line-height:1.7;">
+        TogoMarket est un projet murement reflechi et techniquement abouti. Il ne lui manque qu'un partenaire strategique pour passer du prototype au produit lance. Nous proposons une <strong style="color:white;">co-propriete du projet</strong> en echange d'un investissement et d'un accompagnement strategique.
+      </p>
+
+      <a href="https://www.linkedin.com/in/lincoln2105/" target="_blank" style="display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:#0a66c2;color:white;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(10,102,194,.4);transition:background .2s;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Contacter Lincoln sur LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#020617;color:#94a3b8;padding:40px;text-align:center;">
+  <p style="font-size:16px;font-weight:700;color:white;">TogoMarket</p>
+  <p style="margin-top:4px;">Plateforme e-commerce marketplace au Togo &mdash; &copy; 2026</p>
+  <p style="margin-top:8px;font-size:13px;opacity:.4;">Presente par Lincoln Junior Sagbo &mdash; Ingenieur Developpement Logiciel & Big Data &mdash; Universite de Toulon</p>
+</footer>
+
+</body>
+</html>
