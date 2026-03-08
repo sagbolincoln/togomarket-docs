@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TogoMarket - Business Plan 2026-2028</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --dark: #0f172a;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--bg);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 18px;
+    }
+    .nav-logo-text { font-size: 18px; font-weight: 800; color: var(--dark); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { text-decoration: none; font-size: 13px; font-weight: 600; color: var(--text-light); transition: color .2s; }
+    .nav-links a:hover { color: var(--primary); }
+
+    /* HERO */
+    .hero {
+      padding: 120px 40px 64px;
+      background: linear-gradient(160deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+      color: white; text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.3);
+      padding: 6px 20px; border-radius: 24px; font-size: 14px; font-weight: 600;
+      color: #93c5fd; margin-bottom: 24px;
+    }
+    .hero h1 { font-size: 48px; font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
+    .hero h1 span { display: block; font-size: 22px; font-weight: 400; opacity: .6; margin-top: 8px; letter-spacing: 0; }
+    .hero p { font-size: 17px; opacity: .65; max-width: 700px; margin: 0 auto; }
+
+    /* SECTIONS */
+    section { padding: 64px 40px; max-width: 1100px; margin: 0 auto; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #eff6ff; color: var(--primary); padding: 4px 14px;
+      border-radius: 8px; font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+    }
+    .section-title { font-size: 28px; font-weight: 900; color: var(--dark); margin-bottom: 8px; letter-spacing: -0.5px; }
+    .section-desc { font-size: 15px; color: var(--text-light); margin-bottom: 32px; max-width: 700px; }
+
+    /* CARDS */
+    .card {
+      background: white; border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px; transition: box-shadow .2s;
+    }
+    .card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.06); }
+    .card h4 { font-size: 16px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+    .card p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+    .card .icon { font-size: 28px; margin-bottom: 12px; }
+
+    /* TABLES */
+    .bp-table {
+      width: 100%; border-collapse: collapse; margin-top: 16px;
+      background: white; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .bp-table th {
+      background: var(--dark); color: white; padding: 14px 16px;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+      text-align: left;
+    }
+    .bp-table td {
+      padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .bp-table tr:last-child td { border-bottom: none; }
+    .bp-table tr:nth-child(even) td { background: var(--bg-alt); }
+    .bp-table .total td { font-weight: 800; background: #eff6ff !important; color: var(--primary-dark); }
+    .bp-table .highlight td { background: #f0fdf4 !important; }
+    .bp-table .right { text-align: right; }
+
+    /* TAGS */
+    .tag {
+      display: inline-block; padding: 3px 10px; border-radius: 6px;
+      font-size: 11px; font-weight: 700; margin: 2px 4px 2px 0;
+    }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 14px; top: 8px; bottom: 8px;
+      width: 3px; background: linear-gradient(180deg, #3b82f6, #10b981, #f59e0b, #8b5cf6);
+      border-radius: 2px;
+    }
+    .timeline-item { position: relative; margin-bottom: 32px; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -33px; top: 6px;
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 3px solid; background: white;
+    }
+    .timeline-item:nth-child(1)::before { border-color: #3b82f6; }
+    .timeline-item:nth-child(2)::before { border-color: #10b981; }
+    .timeline-item:nth-child(3)::before { border-color: #f59e0b; }
+    .timeline-item:nth-child(4)::before { border-color: #8b5cf6; }
+    .timeline-item:nth-child(5)::before { border-color: #ef4444; }
+    .timeline-item:nth-child(6)::before { border-color: #06b6d4; }
+    .timeline-item h4 { font-size: 15px; font-weight: 800; color: var(--dark); }
+    .timeline-item .period { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .timeline-item p { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+
+    /* KPI */
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+    .kpi {
+      text-align: center; padding: 24px 16px; border-radius: 14px;
+      background: white; border: 1px solid var(--border);
+    }
+    .kpi .value { font-size: 32px; font-weight: 900; letter-spacing: -1px; }
+    .kpi .label { font-size: 12px; color: var(--text-light); margin-top: 4px; font-weight: 600; }
+
+    /* GRIDS */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* SWOT */
+    .swot { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border-radius: 16px; overflow: hidden; }
+    .swot-cell { padding: 24px; }
+    .swot-cell h4 { font-size: 14px; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .swot-cell ul { list-style: none; padding: 0; }
+    .swot-cell li { font-size: 13px; line-height: 1.8; padding-left: 18px; position: relative; }
+    .swot-cell li::before { content: ''; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; border-radius: 50%; }
+    .swot-s { background: #f0fdf4; }
+    .swot-s h4 { color: #047857; }
+    .swot-s li::before { background: #10b981; }
+    .swot-w { background: #fef2f2; }
+    .swot-w h4 { color: #dc2626; }
+    .swot-w li::before { background: #ef4444; }
+    .swot-o { background: #eff6ff; }
+    .swot-o h4 { color: #1d4ed8; }
+    .swot-o li::before { background: #3b82f6; }
+    .swot-t { background: #fefce8; }
+    .swot-t h4 { color: #b45309; }
+    .swot-t li::before { background: #f59e0b; }
+
+    /* CHART BAR */
+    .bar-chart { margin-top: 20px; }
+    .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .bar-label { width: 100px; font-size: 12px; font-weight: 700; color: var(--text); text-align: right; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 32px; background: #f1f5f9; border-radius: 8px; overflow: hidden; position: relative; }
+    .bar-fill { height: 100%; border-radius: 8px; display: flex; align-items: center; padding-left: 12px; font-size: 12px; font-weight: 700; color: white; min-width: fit-content; }
+    .bar-value { font-size: 13px; font-weight: 800; width: 90px; text-align: right; flex-shrink: 0; }
+
+    /* PRINT */
+    @media print {
+      nav { display: none; }
+      .hero { padding-top: 40px; }
+      section { page-break-inside: avoid; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero { padding: 80px 20px 48px; }
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 15px; }
+      section { padding: 40px 16px; }
+      .section-title { font-size: 22px; }
+      .section-desc { font-size: 14px; }
+      .g2, .g3, .g4 { grid-template-columns: 1fr !important; }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      .swot { grid-template-columns: 1fr; }
+      .bar-label { width: 70px; font-size: 11px; }
+      .bar-value { width: 70px; font-size: 12px; }
+      .bp-table { font-size: 13px; }
+      .bp-table th, .bp-table td { padding: 10px 10px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 22px; }
+      .section-title { font-size: 20px; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      .kpi { padding: 16px; }
+      .kpi .value { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">&#128722;</div>
+    <span class="nav-logo-text">TogoMarket</span>
+  </a>
+  <div class="nav-links">
+    <a href="#resume">Resume</a>
+    <a href="#marche">Marche</a>
+    <a href="#modele">Modele</a>
+    <a href="#financier">Financier</a>
+    <a href="#strategie">Strategie</a>
+    <a href="#risques">Risques</a>
+    <a href="presentation.html">Pitch investisseurs</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">&#128202; Business Plan &mdash; 2026 - 2028</div>
+  <h1>TogoMarket<br><span>Business Plan &mdash; Marketplace e-commerce du Togo</span></h1>
+  <p>Document strategique complet : analyse de marche, modele economique, projections financieres et plan d'execution pour la premiere marketplace e-commerce locale au Togo.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- 1. RESUME EXECUTIF -->
+<!-- ============================================================ -->
+<section id="resume">
+  <div class="section-label">&#128196; 1. Resume executif</div>
+  <h2 class="section-title">Resume executif</h2>
+  <p class="section-desc">L'essentiel du projet en un coup d'oeil.</p>
+
+  <div class="g2" style="margin-bottom:32px;">
+    <div class="card">
+      <div class="icon">&#128681;</div>
+      <h4>Le probleme</h4>
+      <p>Au Togo, il n'existe aucune marketplace e-commerce locale. Les vendeurs utilisent WhatsApp et Facebook pour vendre, sans gestion de stock, sans paiement securise, sans suivi de commande. Les acheteurs n'ont aucune garantie sur la qualite, le prix ou la livraison.</p>
+    </div>
+    <div class="card">
+      <div class="icon">&#128161;</div>
+      <h4>La solution</h4>
+      <p><strong>TogoMarket</strong> : une plateforme marketplace mobile-first multi-vendeurs. Paiements securises (Stripe + TMoney + Flooz), code de livraison anti-fraude, geolocalisation, gestion de stock, dashboard vendeur et admin. Application mobile + web + API.</p>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="value" style="color:#3b82f6;">8M+</div>
+      <div class="label">Population du Togo</div>
+    </div>
+    <div class="kpi">
+      <div class="value" style="color:#10b981;">63%</div>
+      <div class="label">Penetration mobile</div>
+    </div>
+    <div class="kpi">
+      <div class="value" style="color:#f59e0b;">+25%</div>
+      <div class="label">Croissance e-commerce / an</div>
+    </div>
+    <div class="kpi">
+      <div class="value" style="color:#ef4444;">0</div>
+      <div class="label">Marketplace locale existante</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:32px;border-left:4px solid #3b82f6;">
+    <h4>Avantage competitif</h4>
+    <p>TogoMarket est <strong>deja fonctionnel</strong> : application mobile (React Native), application web (React), API backend (Symfony), paiement Stripe, code de livraison securise. Le prototype est pret &mdash; il ne manque que le financement pour le lancement commercial.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2. ANALYSE DU MARCHE -->
+<!-- ============================================================ -->
+<section id="marche" style="background:var(--bg-alt);max-width:100%;">
+  <div class="section-inner">
+    <div class="section-label">&#127757; 2. Analyse du marche</div>
+    <h2 class="section-title">Etude de marche</h2>
+    <p class="section-desc">Le marche togolais du commerce en ligne : un potentiel enorme, une offre quasi inexistante.</p>
+
+    <div class="g3" style="margin-bottom:32px;">
+      <div class="card">
+        <div class="icon">&#127468;&#127469;</div>
+        <h4>Marche togolais</h4>
+        <p>PIB en croissance (+5.5%/an), urbanisation rapide, classe moyenne emergente a Lome. Le commerce informel represente plus de 80% des echanges &mdash; un vivier enorme a formaliser.</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#128241;</div>
+        <h4>Mobile Money</h4>
+        <p>Plus de 60% des Togolais utilisent TMoney ou Flooz au quotidien. Seulement ~5% ont une carte bancaire. Le mobile money est LE moyen de paiement digital dominant.</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#128200;</div>
+        <h4>E-commerce Afrique</h4>
+        <p>Le e-commerce en Afrique de l'Ouest croit de +25%/an. Jumia s'est retire de plusieurs pays. Aucun acteur local ne domine le marche togolais &mdash; c'est le moment d'entrer.</p>
+      </div>
+    </div>
+
+    <!-- TAM SAM SOM -->
+    <div class="card" style="margin-bottom:32px;">
+      <h4>Dimensionnement du marche (FCFA)</h4>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label">TAM</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);">Marche total e-commerce Afrique Ouest</div>
+          </div>
+          <div class="bar-value" style="color:#1d4ed8;">~2 000 Mds</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">SAM</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:25%;background:linear-gradient(90deg,#10b981,#34d399);">E-commerce Togo</div>
+          </div>
+          <div class="bar-value" style="color:#047857;">~50 Mds</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">SOM</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:8%;background:linear-gradient(90deg,#f59e0b,#fbbf24);">Objectif an 3</div>
+          </div>
+          <div class="bar-value" style="color:#b45309;">~2.5 Mds</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--text-light);margin-top:12px;">TAM = Total Addressable Market &bull; SAM = Serviceable Available Market &bull; SOM = Serviceable Obtainable Market &bull; Estimations basees sur rapports BCEAO et Banque Mondiale 2024</p>
+    </div>
+
+    <!-- Concurrence -->
+    <div class="card">
+      <h4>Analyse concurrentielle</h4>
+      <table class="bp-table" style="margin-top:16px;">
+        <thead>
+          <tr>
+            <th>Concurrent</th>
+            <th>Type</th>
+            <th>Presence Togo</th>
+            <th>Faiblesse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Facebook / WhatsApp</strong></td>
+            <td>Reseaux sociaux</td>
+            <td>Forte</td>
+            <td>Pas de paiement integre, pas de suivi, pas de confiance</td>
+          </tr>
+          <tr>
+            <td><strong>Jumia</strong></td>
+            <td>Marketplace</td>
+            <td>Retiree</td>
+            <td>A quitte le Togo, frais eleves, pas adapte au marche local</td>
+          </tr>
+          <tr>
+            <td><strong>Boutiques Shopify</strong></td>
+            <td>E-commerce individuel</td>
+            <td>Tres faible</td>
+            <td>Abonnement cher, pas de Mobile Money, pas d'ecosysteme local</td>
+          </tr>
+          <tr>
+            <td><strong>Vendeurs physiques</strong></td>
+            <td>Commerce traditionnel</td>
+            <td>Dominante</td>
+            <td>Pas de presence en ligne, portee geographique limitee</td>
+          </tr>
+          <tr class="highlight">
+            <td><strong>TogoMarket</strong></td>
+            <td>Marketplace locale</td>
+            <td>Lancement</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. MODELE ECONOMIQUE -->
+<!-- ============================================================ -->
+<section id="modele">
+  <div class="section-label">&#128176; 3. Modele economique</div>
+  <h2 class="section-title">Modele de revenus</h2>
+  <p class="section-desc">4 sources de revenus complementaires pour une monetisation durable.</p>
+
+  <div class="g2" style="margin-bottom:32px;">
+    <div class="card" style="border-left:4px solid #10b981;">
+      <div class="icon">&#128184;</div>
+      <h4>Commission sur ventes &mdash; 5 a 10%</h4>
+      <p>Commission prelevee sur chaque transaction realisee sur la plateforme. Taux degressif pour les gros vendeurs. Source de revenu principale.</p>
+      <div style="margin-top:12px;">
+        <span class="tag" style="background:#d1fae5;color:#047857;">Revenu principal</span>
+        <span class="tag" style="background:#d1fae5;color:#047857;">Recurrent</span>
+      </div>
+    </div>
+    <div class="card" style="border-left:4px solid #3b82f6;">
+      <div class="icon">&#128666;</div>
+      <h4>Frais de livraison &mdash; Variable</h4>
+      <p>Marge sur les frais de livraison factures a l'acheteur. Tarification par zone (Lome centre, peripherie, villes secondaires). A definir avec le partenaire logistique.</p>
+      <div style="margin-top:12px;">
+        <span class="tag" style="background:#dbeafe;color:#1d4ed8;">Par commande</span>
+        <span class="tag" style="background:#dbeafe;color:#1d4ed8;">A definir</span>
+      </div>
+    </div>
+    <div class="card" style="border-left:4px solid #f59e0b;">
+      <div class="icon">&#11088;</div>
+      <h4>Abonnement Premium vendeur</h4>
+      <p>Offre mensuelle pour les vendeurs professionnels : mise en avant des produits, statistiques avancees, commission reduite ou 0%, badge "vendeur certifie".</p>
+      <div style="margin-top:12px;">
+        <span class="tag" style="background:#fef3c7;color:#b45309;">Abonnement mensuel</span>
+        <span class="tag" style="background:#fef3c7;color:#b45309;">5 000 - 15 000 FCFA/mois</span>
+      </div>
+    </div>
+    <div class="card" style="border-left:4px solid #8b5cf6;">
+      <div class="icon">&#128226;</div>
+      <h4>Publicite in-app</h4>
+      <p>Produits sponsorises en tete de catalogue, bannieres publicitaires vendeurs, notifications push promotionnelles ciblees.</p>
+      <div style="margin-top:12px;">
+        <span class="tag" style="background:#ede9fe;color:#6d28d9;">A partir de la Phase 2</span>
+        <span class="tag" style="background:#ede9fe;color:#6d28d9;">CPC / CPM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. PROJECTIONS FINANCIERES -->
+<!-- ============================================================ -->
+<section id="financier" style="background:var(--bg-alt);max-width:100%;">
+  <div class="section-inner">
+    <div class="section-label">&#128202; 4. Projections financieres</div>
+    <h2 class="section-title">Plan financier sur 3 ans</h2>
+    <p class="section-desc">Estimations basees sur une croissance progressive du nombre de vendeurs et du volume de transactions.</p>
+
+    <!-- Hypotheses -->
+    <div class="card" style="margin-bottom:32px;">
+      <h4>Hypotheses de base</h4>
+      <table class="bp-table">
+        <thead>
+          <tr><th>Parametre</th><th>An 1 (2026-2027)</th><th>An 2 (2027-2028)</th><th>An 3 (2028-2029)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Vendeurs actifs</td><td class="right">50</td><td class="right">200</td><td class="right">500</td></tr>
+          <tr><td>Acheteurs inscrits</td><td class="right">500</td><td class="right">3 000</td><td class="right">10 000</td></tr>
+          <tr><td>Commandes / mois</td><td class="right">150</td><td class="right">1 200</td><td class="right">5 000</td></tr>
+          <tr><td>Panier moyen (FCFA)</td><td class="right">15 000</td><td class="right">18 000</td><td class="right">20 000</td></tr>
+          <tr><td>Commission moyenne</td><td class="right">7%</td><td class="right">7%</td><td class="right">6.5%</td></tr>
+          <tr><td>Vendeurs premium</td><td class="right">5</td><td class="right">30</td><td class="right">100</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Revenus projetes -->
+    <div class="card" style="margin-bottom:32px;">
+      <h4>Revenus projetes (FCFA)</h4>
+      <table class="bp-table">
+        <thead>
+          <tr><th>Source de revenu</th><th class="right">An 1</th><th class="right">An 2</th><th class="right">An 3</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commissions sur ventes</td>
+            <td class="right">1 890 000</td>
+            <td class="right">18 144 000</td>
+            <td class="right">78 000 000</td>
+          </tr>
+          <tr>
+            <td>Abonnements premium</td>
+            <td class="right">300 000</td>
+            <td class="right">2 700 000</td>
+            <td class="right">12 000 000</td>
+          </tr>
+          <tr>
+            <td>Frais de livraison (marge)</td>
+            <td class="right">450 000</td>
+            <td class="right">3 600 000</td>
+            <td class="right">15 000 000</td>
+          </tr>
+          <tr>
+            <td>Publicite</td>
+            <td class="right">0</td>
+            <td class="right">1 200 000</td>
+            <td class="right">6 000 000</td>
+          </tr>
+          <tr class="total">
+            <td>TOTAL REVENUS</td>
+            <td class="right">2 640 000</td>
+            <td class="right">25 644 000</td>
+            <td class="right">111 000 000</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--text-light);margin-top:10px;">Calcul An 1 commissions : 150 cmd/mois x 12 mois x 15 000 FCFA x 7% = 1 890 000 FCFA</p>
+    </div>
+
+    <!-- Charges -->
+    <div class="card" style="margin-bottom:32px;">
+      <h4>Charges previsionnelles (FCFA)</h4>
+      <table class="bp-table">
+        <thead>
+          <tr><th>Poste de depense</th><th class="right">An 1</th><th class="right">An 2</th><th class="right">An 3</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Serveurs & infrastructure cloud</td>
+            <td class="right">600 000</td>
+            <td class="right">1 200 000</td>
+            <td class="right">2 400 000</td>
+          </tr>
+          <tr>
+            <td>Nom de domaine + SSL</td>
+            <td class="right">50 000</td>
+            <td class="right">50 000</td>
+            <td class="right">50 000</td>
+          </tr>
+          <tr>
+            <td>Frais Stripe / paiement</td>
+            <td class="right">540 000</td>
+            <td class="right">5 184 000</td>
+            <td class="right">24 000 000</td>
+          </tr>
+          <tr>
+            <td>Publication App Store / Play Store</td>
+            <td class="right">80 000</td>
+            <td class="right">40 000</td>
+            <td class="right">40 000</td>
+          </tr>
+          <tr>
+            <td>Marketing & publicite</td>
+            <td class="right">1 500 000</td>
+            <td class="right">3 000 000</td>
+            <td class="right">6 000 000</td>
+          </tr>
+          <tr>
+            <td>Local / point de retrait (loyer)</td>
+            <td class="right">0</td>
+            <td class="right">1 800 000</td>
+            <td class="right">3 600 000</td>
+          </tr>
+          <tr>
+            <td>Equipe (salaires / freelances)</td>
+            <td class="right">0</td>
+            <td class="right">3 600 000</td>
+            <td class="right">12 000 000</td>
+          </tr>
+          <tr>
+            <td>Logistique & livraison</td>
+            <td class="right">300 000</td>
+            <td class="right">2 400 000</td>
+            <td class="right">9 000 000</td>
+          </tr>
+          <tr>
+            <td>Divers (juridique, comptable, imprevus)</td>
+            <td class="right">200 000</td>
+            <td class="right">500 000</td>
+            <td class="right">1 000 000</td>
+          </tr>
+          <tr class="total">
+            <td>TOTAL CHARGES</td>
+            <td class="right">3 270 000</td>
+            <td class="right">17 774 000</td>
+            <td class="right">58 090 000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Resultat -->
+    <div class="card" style="margin-bottom:32px;">
+      <h4>Resultat net previsionnel</h4>
+      <table class="bp-table">
+        <thead>
+          <tr><th></th><th class="right">An 1</th><th class="right">An 2</th><th class="right">An 3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Revenus</td><td class="right">2 640 000</td><td class="right">25 644 000</td><td class="right">111 000 000</td></tr>
+          <tr><td>Charges</td><td class="right">-3 270 000</td><td class="right">-17 774 000</td><td class="right">-58 090 000</td></tr>
+          <tr class="total">
+            <td>RESULTAT NET</td>
+            <td class="right" style="color:#dc2626;">-630 000</td>
+            <td class="right" style="color:#047857;">+7 870 000</td>
+            <td class="right" style="color:#047857;">+52 910 000</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:13px;color:var(--text-light);margin-top:12px;">Rentabilite atteinte des l'annee 2 grace a des charges maitrisees et une croissance organique du nombre de vendeurs.</p>
+    </div>
+
+    <!-- Besoin de financement -->
+    <div class="card" style="border-left:4px solid #f59e0b;">
+      <h4>&#128176; Besoin de financement initial</h4>
+      <table class="bp-table" style="margin-top:16px;">
+        <thead>
+          <tr><th>Poste</th><th class="right">Montant (FCFA)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Infrastructure & deploiement (serveurs, domaine, SSL, stores)</td><td class="right">730 000</td></tr>
+          <tr><td>Marketing de lancement (6 mois)</td><td class="right">1 500 000</td></tr>
+          <tr><td>Integration TMoney & Flooz (API marchande)</td><td class="right">500 000</td></tr>
+          <tr><td>Fonds de roulement (6 mois)</td><td class="right">1 000 000</td></tr>
+          <tr><td>Logistique initiale</td><td class="right">300 000</td></tr>
+          <tr><td>Imprevus (10%)</td><td class="right">400 000</td></tr>
+          <tr class="total">
+            <td>TOTAL BESOIN</td>
+            <td class="right">4 430 000 FCFA</td>
+          </tr>
+          <tr>
+            <td><em>Equivalent EUR</em></td>
+            <td class="right"><em>~6 750 EUR</em></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. STRATEGIE & PLAN D'EXECUTION -->
+<!-- ============================================================ -->
+<section id="strategie">
+  <div class="section-label">&#128640; 5. Strategie & execution</div>
+  <h2 class="section-title">Plan d'execution</h2>
+  <p class="section-desc">De la levee de fonds au lancement national en 18 mois.</p>
+
+  <div class="g2">
+    <div>
+      <h4 style="font-size:18px;font-weight:800;color:var(--dark);margin-bottom:20px;">Feuille de route</h4>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="period">Mois 0 (fait)</div>
+          <h4>Prototype fonctionnel</h4>
+          <p>App mobile + web + API backend + paiement Stripe + code de livraison. Pret a deployer.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="period">Mois 1 - 2</div>
+          <h4>Financement & deploiement</h4>
+          <p>Levee de fonds, deploiement serveurs, publication sur les stores, nom de domaine, integration TMoney/Flooz.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="period">Mois 3 - 4</div>
+          <h4>Recrutement vendeurs pilotes</h4>
+          <p>50 premiers vendeurs a Lome. Formation, accompagnement, onboarding. Partenariat livraison local.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="period">Mois 5 - 8</div>
+          <h4>Lancement commercial Lome</h4>
+          <p>Campagne marketing (Facebook Ads, influenceurs, flyers marches). Objectif : 500 acheteurs, 150 commandes/mois.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="period">Mois 9 - 14</div>
+          <h4>Croissance & local physique</h4>
+          <p>Point de retrait a Lome, 200 vendeurs, equipe de support. Abonnements premium. Publicite in-app.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="period">Mois 15 - 24</div>
+          <h4>Expansion nationale & UEMOA</h4>
+          <p>Villes secondaires (Kara, Sokode, Atakpame). Flotte de livreurs. Ouverture vers les pays UEMOA (Benin, Burkina, etc.).</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h4 style="font-size:18px;font-weight:800;color:var(--dark);margin-bottom:20px;">Strategie d'acquisition</h4>
+
+      <div class="card" style="margin-bottom:16px;border-left:4px solid #10b981;">
+        <h4>&#127793; Vendeurs</h4>
+        <p>Approche directe des commercants dans les grands marches de Lome (Assivito, Adawlato, Hedzranawoe). Formation gratuite a l'utilisation de la plateforme. Partenariat avec les associations de commercants et les centres de formation entrepreneuriale.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;border-left:4px solid #3b82f6;">
+        <h4>&#128101; Acheteurs</h4>
+        <p>Campagnes Facebook/Instagram ciblees Lome. WhatsApp Business pour le service client. Influenceurs togolais. Promotions de lancement (livraison gratuite, code promo). Bouche-a-oreille et referencement local.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;border-left:4px solid #f59e0b;">
+        <h4>&#128666; Logistique</h4>
+        <p>Partenariat avec un service de livraison local existant (Go Express, LivraTogo, ou similaire). En phase 2 : creation d'une flotte propre de livreurs moto. Points de retrait dans les quartiers cles de Lome.</p>
+      </div>
+
+      <div class="card" style="border-left:4px solid #8b5cf6;">
+        <h4>&#128241; Paiements locaux</h4>
+        <p>Integration des API marchandes TMoney (Togocom) et Flooz (Moov Africa) des la phase 1. Couvre 60%+ de la population. Confirmation de paiement par callback automatique. Paiement par USSD pour les clients sans smartphone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. ANALYSE SWOT -->
+<!-- ============================================================ -->
+<section style="background:var(--bg-alt);max-width:100%;">
+  <div class="section-inner">
+    <div class="section-label">&#128270; 6. Analyse SWOT</div>
+    <h2 class="section-title">Forces, faiblesses, opportunites, menaces</h2>
+    <p class="section-desc">Vue strategique des facteurs internes et externes du projet.</p>
+
+    <div class="swot">
+      <div class="swot-cell swot-s">
+        <h4>&#128170; Forces</h4>
+        <ul>
+          <li>Prototype fonctionnel et teste</li>
+          <li>Expertise technique full-stack du fondateur</li>
+          <li>Code de livraison securise (innovation)</li>
+          <li>Multi-vendeurs avec split automatique</li>
+          <li>3 plateformes (mobile, web, API)</li>
+          <li>Connaissance du marche togolais</li>
+        </ul>
+      </div>
+      <div class="swot-cell swot-w">
+        <h4>&#9888; Faiblesses</h4>
+        <ul>
+          <li>Pas encore d'utilisateurs / traction</li>
+          <li>Equipe reduite (1 personne technique)</li>
+          <li>Pas de financement acquis</li>
+          <li>TMoney/Flooz pas encore integres</li>
+          <li>Pas de partenaire logistique confirme</li>
+        </ul>
+      </div>
+      <div class="swot-cell swot-o">
+        <h4>&#127775; Opportunites</h4>
+        <ul>
+          <li>Aucun concurrent local direct</li>
+          <li>Retrait de Jumia du marche</li>
+          <li>Forte penetration mobile (63%)</li>
+          <li>Croissance e-commerce +25%/an</li>
+          <li>Zone UEMOA (8 pays, meme devise FCFA)</li>
+          <li>Soutien gouvernemental a la numerisation</li>
+        </ul>
+      </div>
+      <div class="swot-cell swot-t">
+        <h4>&#9889; Menaces</h4>
+        <ul>
+          <li>Entree d'un acteur international</li>
+          <li>Resistance au changement des commercants</li>
+          <li>Infrastructure internet encore limitee</li>
+          <li>Reglementation e-commerce pas encore mature</li>
+          <li>Confiance limitee dans le paiement en ligne</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 7. RISQUES & MITIGATION -->
+<!-- ============================================================ -->
+<section id="risques">
+  <div class="section-label">&#128737; 7. Risques & mitigation</div>
+  <h2 class="section-title">Gestion des risques</h2>
+  <p class="section-desc">Identification des risques majeurs et strategies de mitigation.</p>
+
+  <table class="bp-table">
+    <thead>
+      <tr>
+        <th>Risque</th>
+        <th>Impact</th>
+        <th>Probabilite</th>
+        <th>Mitigation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Faible adoption vendeurs</strong></td>
+        <td><span class="tag" style="background:#fee2e2;color:#dc2626;">Eleve</span></td>
+        <td><span class="tag" style="background:#fef3c7;color:#b45309;">Moyen</span></td>
+        <td>Formation gratuite, accompagnement personnalise, commission reduite les 3 premiers mois</td>
+      </tr>
+      <tr>
+        <td><strong>Faible adoption acheteurs</strong></td>
+        <td><span class="tag" style="background:#fee2e2;color:#dc2626;">Eleve</span></td>
+        <td><span class="tag" style="background:#fef3c7;color:#b45309;">Moyen</span></td>
+        <td>Promotions de lancement, livraison gratuite, marketing agressif Facebook/WhatsApp</td>
+      </tr>
+      <tr>
+        <td><strong>Problemes de livraison</strong></td>
+        <td><span class="tag" style="background:#fef3c7;color:#b45309;">Moyen</span></td>
+        <td><span class="tag" style="background:#fee2e2;color:#dc2626;">Eleve</span></td>
+        <td>Code de livraison securise, partenariat avec service existant, points de retrait</td>
+      </tr>
+      <tr>
+        <td><strong>Panne technique / serveur</strong></td>
+        <td><span class="tag" style="background:#fef3c7;color:#b45309;">Moyen</span></td>
+        <td><span class="tag" style="background:#d1fae5;color:#047857;">Faible</span></td>
+        <td>Infrastructure Docker, deploiement cloud avec backup, monitoring, CI/CD</td>
+      </tr>
+      <tr>
+        <td><strong>Entree d'un concurrent</strong></td>
+        <td><span class="tag" style="background:#fee2e2;color:#dc2626;">Eleve</span></td>
+        <td><span class="tag" style="background:#d1fae5;color:#047857;">Faible</span></td>
+        <td>Avantage du premier entrant, connaissance locale, paiements locaux integres, communaute de vendeurs fidelisee</td>
+      </tr>
+      <tr>
+        <td><strong>Fraude / litiges</strong></td>
+        <td><span class="tag" style="background:#fef3c7;color:#b45309;">Moyen</span></td>
+        <td><span class="tag" style="background:#fef3c7;color:#b45309;">Moyen</span></td>
+        <td>Code de livraison, validation vendeurs par admin, systeme de reviews, verification manuelle</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<!-- 8. EQUIPE & GOUVERNANCE -->
+<!-- ============================================================ -->
+<section style="background:var(--bg-alt);max-width:100%;">
+  <div class="section-inner">
+    <div class="section-label">&#128101; 8. Equipe</div>
+    <h2 class="section-title">Equipe & gouvernance</h2>
+    <p class="section-desc">Structure actuelle et plan de recrutement.</p>
+
+    <div class="g2">
+      <div class="card" style="border-left:4px solid #3b82f6;">
+        <h4>Equipe actuelle</h4>
+        <div style="display:flex;align-items:center;gap:16px;margin-top:16px;">
+          <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#1d4ed8);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:white;flex-shrink:0;">LS</div>
+          <div>
+            <div style="font-size:15px;font-weight:800;color:var(--dark);">Lincoln Junior Sagbo</div>
+            <div style="font-size:13px;color:var(--primary);font-weight:600;">Fondateur & Developpeur Full-Stack</div>
+            <div style="font-size:12px;color:var(--text-light);margin-top:2px;">Ingenieur Dev Logiciel & Big Data &mdash; Universite de Toulon</div>
+          </div>
+        </div>
+        <p style="margin-top:16px;">Conception, developpement et maintenance de l'ensemble de la plateforme (mobile, web, API, base de donnees, DevOps). Vision produit et strategie.</p>
+      </div>
+
+      <div class="card" style="border-left:4px solid #10b981;">
+        <h4>Recrutements prevus</h4>
+        <div style="margin-top:12px;">
+          <div style="padding:10px 0;border-bottom:1px solid var(--border);">
+            <div style="font-size:13px;font-weight:700;color:var(--dark);">Community Manager</div>
+            <div style="font-size:12px;color:var(--text-light);">Phase 2 &mdash; Reseaux sociaux, support client WhatsApp</div>
+          </div>
+          <div style="padding:10px 0;border-bottom:1px solid var(--border);">
+            <div style="font-size:13px;font-weight:700;color:var(--dark);">Commercial terrain</div>
+            <div style="font-size:12px;color:var(--text-light);">Phase 2 &mdash; Recrutement vendeurs dans les marches</div>
+          </div>
+          <div style="padding:10px 0;border-bottom:1px solid var(--border);">
+            <div style="font-size:13px;font-weight:700;color:var(--dark);">Responsable logistique</div>
+            <div style="font-size:12px;color:var(--text-light);">Phase 3 &mdash; Gestion livraisons et points de retrait</div>
+          </div>
+          <div style="padding:10px 0;">
+            <div style="font-size:13px;font-weight:700;color:var(--dark);">Developpeur junior</div>
+            <div style="font-size:12px;color:var(--text-light);">Phase 3 &mdash; Support technique et evolutions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 9. ASPECTS JURIDIQUES -->
+<!-- ============================================================ -->
+<section>
+  <div class="section-label">&#9878; 9. Cadre juridique</div>
+  <h2 class="section-title">Structure juridique & conformite</h2>
+  <p class="section-desc">Cadre legal et reglementaire pour operer au Togo.</p>
+
+  <div class="g3">
+    <div class="card">
+      <div class="icon">&#127970;</div>
+      <h4>Forme juridique</h4>
+      <p>Creation d'une <strong>SARL</strong> (Societe a Responsabilite Limitee) au Togo. Capital social minimum : 100 000 FCFA. Enregistrement au RCCM (Registre du Commerce) et obtention du NIF (Numero d'Identification Fiscale).</p>
+    </div>
+    <div class="card">
+      <div class="icon">&#128220;</div>
+      <h4>Conditions generales</h4>
+      <p>Redaction des CGV (Conditions Generales de Vente), CGU (Conditions Generales d'Utilisation), et politique de confidentialite conformes a la legislation togolaise sur le commerce electronique.</p>
+    </div>
+    <div class="card">
+      <div class="icon">&#128274;</div>
+      <h4>Protection des donnees</h4>
+      <p>Conformite avec la loi togolaise sur la protection des donnees personnelles. Stockage securise, chiffrement des mots de passe, tokens JWT avec expiration. Pas de revente de donnees.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 10. CONCLUSION -->
+<!-- ============================================================ -->
+<section style="background:linear-gradient(160deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);color:white;max-width:100%;">
+  <div style="max-width:800px;margin:0 auto;text-align:center;">
+    <div style="font-size:48px;margin-bottom:16px;">&#127793;</div>
+    <h2 style="font-size:32px;font-weight:900;margin-bottom:16px;">Conclusion</h2>
+    <p style="font-size:17px;opacity:.75;line-height:1.8;margin-bottom:32px;">
+      TogoMarket est un projet <strong style="color:white;">concret et fonctionnel</strong>. Le prototype est pret, le marche est identifie, et il n'existe aucun concurrent local. Avec un investissement initial de <strong style="color:#fbbf24;">4 430 000 FCFA (~6 750 EUR)</strong>, le projet peut etre lance commercialement et atteindre la rentabilite des la deuxieme annee, avec un resultat net previsionnel de <strong style="color:#fbbf24;">+52 910 000 FCFA</strong> en annee 3.
+    </p>
+
+    <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:32px;">
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px 32px;text-align:center;">
+        <div style="font-size:24px;font-weight:900;color:#fbbf24;">4.4M FCFA</div>
+        <div style="font-size:12px;opacity:.6;margin-top:4px;">Besoin initial</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px 32px;text-align:center;">
+        <div style="font-size:24px;font-weight:900;color:#34d399;">An 2</div>
+        <div style="font-size:12px;opacity:.6;margin-top:4px;">Rentabilite</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px 32px;text-align:center;">
+        <div style="font-size:24px;font-weight:900;color:#60a5fa;">52.9M FCFA</div>
+        <div style="font-size:12px;opacity:.6;margin-top:4px;">Resultat An 3</div>
+      </div>
+    </div>
+
+    <a href="https://www.linkedin.com/in/lincoln2105/" target="_blank" style="display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:#0a66c2;color:white;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(10,102,194,.4);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      Contacter Lincoln Junior Sagbo
+    </a>
+
+    <p style="font-size:12px;opacity:.3;margin-top:24px;">TogoMarket &mdash; Business Plan Mars 2026 &mdash; Document confidentiel</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#020617;color:#94a3b8;padding:40px;text-align:center;">
+  <p style="font-size:16px;font-weight:700;color:white;">TogoMarket</p>
+  <p style="margin-top:4px;">Plateforme e-commerce marketplace au Togo &mdash; &copy; 2026</p>
+  <div style="margin-top:12px;display:flex;justify-content:center;gap:16px;">
+    <a href="presentation.html" style="color:#60a5fa;text-decoration:none;font-size:13px;">Pitch investisseurs</a>
+    <a href="index.html" style="color:#60a5fa;text-decoration:none;font-size:13px;">Documentation technique</a>
+  </div>
+</footer>
+
+</body>
+</html>
