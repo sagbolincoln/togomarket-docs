@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+  body { font-family: 'Inter', sans-serif; width: 1080px; height: 1080px; overflow: hidden; }
+  .card {
+    width: 1080px; height: 1080px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .glow-1 { position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(99,102,241,0.3), transparent 70%); }
+  .glow-2 { position: absolute; bottom: -200px; left: -200px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(16,185,129,0.2), transparent 70%); }
+  .badge { background: linear-gradient(90deg, #6366f1, #8b5cf6); color: #fff; font-size: 18px; font-weight: 700; padding: 12px 32px; border-radius: 50px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; position: relative; }
+  h1 { font-size: 72px; font-weight: 900; color: #fff; text-align: center; line-height: 1.1; position: relative; max-width: 800px; }
+  h1 span { background: linear-gradient(90deg, #6366f1, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .subtitle { font-size: 24px; color: #94a3b8; text-align: center; margin-top: 24px; max-width: 700px; line-height: 1.6; position: relative; }
+  .cta { margin-top: 48px; background: linear-gradient(90deg, #6366f1, #8b5cf6); color: #fff; font-size: 22px; font-weight: 700; padding: 20px 56px; border-radius: 16px; position: relative; box-shadow: 0 20px 60px rgba(99,102,241,0.4); }
+  .flag { font-size: 64px; margin-bottom: 24px; position: relative; }
+  .dots { position: absolute; bottom: 60px; display: flex; gap: 12px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  .dot.active { background: #6366f1; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+  <div class="flag">🇹🇬</div>
+  <div class="badge">Nouveau</div>
+  <h1>TogoMarket<br>est <span>arrive</span></h1>
+  <p class="subtitle">La premiere marketplace 100% togolaise.<br>Achetez et vendez en toute confiance.</p>
+  <div class="cta">Telecharger maintenant</div>
+  <div class="dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+</body>
+</html>

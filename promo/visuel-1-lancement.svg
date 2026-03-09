@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="50%" style="stop-color:#1e293b"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#10b981"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="80%" cy="10%" r="40%">
+      <stop offset="0%" style="stop-color:rgba(99,102,241,0.35)"/>
+      <stop offset="100%" style="stop-color:transparent"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="15%" cy="90%" r="35%">
+      <stop offset="0%" style="stop-color:rgba(16,185,129,0.25)"/>
+      <stop offset="100%" style="stop-color:transparent"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="30" flood-color="#6366f1" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <rect width="1080" height="1080" fill="url(#glow1)"/>
+  <rect width="1080" height="1080" fill="url(#glow2)"/>
+  <!-- Flag -->
+  <text x="540" y="300" text-anchor="middle" font-size="80">🇹🇬</text>
+  <!-- Badge -->
+  <rect x="415" y="340" width="250" height="52" rx="26" fill="url(#accent)"/>
+  <text x="540" y="374" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#fff" letter-spacing="3">NOUVEAU</text>
+  <!-- Title -->
+  <text x="540" y="480" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="900" fill="#ffffff">TogoMarket</text>
+  <text x="540" y="560" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="900" fill="#ffffff">est <tspan fill="url(#green)">arrive</tspan></text>
+  <!-- Subtitle -->
+  <text x="540" y="630" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#94a3b8">La premiere marketplace 100% togolaise.</text>
+  <text x="540" y="665" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#94a3b8">Achetez et vendez en toute confiance.</text>
+  <!-- CTA Button -->
+  <rect x="330" y="720" width="420" height="70" rx="16" fill="url(#accent)" filter="url(#shadow)"/>
+  <text x="540" y="764" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#fff">Telecharger maintenant</text>
+  <!-- Dots -->
+  <circle cx="480" cy="920" r="6" fill="#6366f1"/>
+  <circle cx="504" cy="920" r="6" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="528" cy="920" r="6" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="552" cy="920" r="6" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="576" cy="920" r="6" fill="rgba(255,255,255,0.2)"/>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24"/>
+      <stop offset="100%" style="stop-color:#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <!-- Decorative -->
+  <circle cx="200" cy="200" r="350" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="880" cy="880" r="300" fill="rgba(255,255,255,0.06)"/>
+  <!-- Phone mockup -->
+  <rect x="380" y="60" width="320" height="620" rx="40" fill="#1e293b"/>
+  <rect x="395" y="80" width="290" height="580" rx="30" fill="#0f172a"/>
+  <!-- Phone screen content -->
+  <rect x="415" y="120" width="250" height="40" rx="8" fill="rgba(255,255,255,0.1)"/>
+  <text x="540" y="148" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#94a3b8">Paiement securise</text>
+  <rect x="430" y="190" width="220" height="100" rx="16" fill="rgba(99,102,241,0.3)"/>
+  <text x="540" y="235" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#a5b4fc">Montant</text>
+  <text x="540" y="270" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="800" fill="#fff">15 000 F</text>
+  <!-- Payment options on screen -->
+  <rect x="430" y="310" width="220" height="50" rx="10" fill="#10b981"/>
+  <text x="540" y="342" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff">TMoney</text>
+  <rect x="430" y="375" width="220" height="50" rx="10" fill="#3b82f6"/>
+  <text x="540" y="407" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff">Flooz</text>
+  <rect x="430" y="440" width="220" height="50" rx="10" fill="#6366f1"/>
+  <text x="540" y="472" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff">Carte bancaire</text>
+  <!-- Confirm button on screen -->
+  <rect x="430" y="520" width="220" height="50" rx="12" fill="#fbbf24"/>
+  <text x="540" y="552" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#1e293b">Confirmer</text>
+  <!-- Main text below phone -->
+  <text x="540" y="760" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="900" fill="#1e293b">Payez comme</text>
+  <text x="540" y="835" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="900" fill="#1e293b">vous voulez</text>
+  <!-- Subtitle -->
+  <text x="540" y="895" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#78350f">TMoney · Flooz · Carte bancaire · Cash</text>
+  <!-- Footer -->
+  <rect x="365" y="940" width="350" height="52" rx="26" fill="#1e293b"/>
+  <text x="540" y="974" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#fbbf24">TogoMarket 🇹🇬</text>
+</svg>

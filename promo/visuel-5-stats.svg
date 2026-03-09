@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="100%" style="stop-color:#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <!-- Top bar -->
+  <rect x="0" y="0" width="1080" height="8" fill="url(#accent)"/>
+  <!-- Header -->
+  <text x="540" y="120" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#6366f1" letter-spacing="3">POURQUOI TOGOMARKET ?</text>
+  <text x="540" y="200" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="900" fill="#0f172a">Le commerce au</text>
+  <text x="540" y="270" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="900" fill="#0f172a">Togo change</text>
+  <!-- Stats grid -->
+  <!-- Stat 1 -->
+  <rect x="80" y="340" width="430" height="180" rx="24" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="300" y="410" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="60" font-weight="900" fill="#6366f1">80%</text>
+  <text x="300" y="450" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#64748b">du commerce est informel</text>
+  <text x="300" y="478" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#94a3b8">Un vivier enorme a digitaliser</text>
+  <!-- Stat 2 -->
+  <rect x="570" y="340" width="430" height="180" rx="24" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="785" y="410" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="60" font-weight="900" fill="#10b981">60%</text>
+  <text x="785" y="450" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#64748b">utilisent le Mobile Money</text>
+  <text x="785" y="478" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#94a3b8">TMoney et Flooz integres</text>
+  <!-- Stat 3 -->
+  <rect x="80" y="560" width="430" height="180" rx="24" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="300" y="630" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="60" font-weight="900" fill="#f59e0b">+25%</text>
+  <text x="300" y="670" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#64748b">croissance e-commerce/an</text>
+  <text x="300" y="698" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#94a3b8">Afrique de l'Ouest</text>
+  <!-- Stat 4 -->
+  <rect x="570" y="560" width="430" height="180" rx="24" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="785" y="630" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="60" font-weight="900" fill="#ef4444">0</text>
+  <text x="785" y="670" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#64748b">concurrent local dominant</text>
+  <text x="785" y="698" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#94a3b8">Jumia s'est retire du Togo</text>
+  <!-- Bottom message -->
+  <rect x="200" y="800" width="680" height="100" rx="20" fill="#0f172a"/>
+  <text x="540" y="845" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#fff">🇹🇬  Le moment c'est maintenant.</text>
+  <text x="540" y="878" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#94a3b8">Rejoignez TogoMarket — acheteurs et vendeurs</text>
+  <!-- CTA -->
+  <rect x="370" y="940" width="340" height="60" rx="14" fill="url(#accent)"/>
+  <text x="540" y="978" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#fff">togomarket.tg</text>
+</svg>

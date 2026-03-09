@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#064e3b"/>
+      <stop offset="100%" style="stop-color:#022c22"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <!-- Decorative circles -->
+  <circle cx="900" cy="180" r="300" fill="rgba(255,255,255,0.06)"/>
+  <circle cx="150" cy="900" r="250" fill="rgba(255,255,255,0.04)"/>
+  <circle cx="540" cy="540" r="400" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <!-- Top label -->
+  <rect x="365" y="180" width="350" height="48" rx="24" fill="rgba(255,255,255,0.15)"/>
+  <text x="540" y="212" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" fill="#fff" letter-spacing="2">APPEL AUX VENDEURS</text>
+  <!-- Main text -->
+  <text x="540" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="900" fill="#fff">Vendez vos</text>
+  <text x="540" y="420" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="900" fill="#fff">produits a</text>
+  <text x="540" y="500" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="900" fill="#022c22">tout le Togo</text>
+  <!-- Stats boxes -->
+  <rect x="100" y="570" width="260" height="140" rx="20" fill="rgba(255,255,255,0.15)"/>
+  <text x="230" y="625" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800" fill="#fff">0 FCFA</text>
+  <text x="230" y="660" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.8)">Inscription gratuite</text>
+  <rect x="410" y="570" width="260" height="140" rx="20" fill="rgba(255,255,255,0.15)"/>
+  <text x="540" y="625" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800" fill="#fff">24h</text>
+  <text x="540" y="660" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.8)">Mise en ligne rapide</text>
+  <rect x="720" y="570" width="260" height="140" rx="20" fill="rgba(255,255,255,0.15)"/>
+  <text x="850" y="625" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800" fill="#fff">TMoney</text>
+  <text x="850" y="660" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.8)">Paiement mobile</text>
+  <!-- Features list -->
+  <text x="540" y="790" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" fill="rgba(255,255,255,0.9)">✓ Dashboard vendeur  ·  ✓ Suivi commandes  ·  ✓ Portefeuille</text>
+  <!-- CTA -->
+  <rect x="330" y="850" width="420" height="70" rx="16" fill="#fff"/>
+  <text x="540" y="894" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#059669">Creer ma boutique</text>
+  <!-- Footer -->
+  <text x="540" y="1000" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.5)">togomarket.tg</text>
+</svg>
